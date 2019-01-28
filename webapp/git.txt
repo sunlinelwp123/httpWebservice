@@ -1,0 +1,6 @@
+echo"＃httpWebservice">> README.md 
+git init 
+git add .
+git commit -m"full commit"
+git remote add origin https://github.com/sunlinelwp123/httpWebservice.git
+ git push -u origin master

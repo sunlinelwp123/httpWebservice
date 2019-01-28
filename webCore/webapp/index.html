@@ -1,0 +1,616 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" countent="it在线培训,it职业教育平台,JAVA基础入门,java教程,it职业技能学习">
+    <meta name="description" countent="达内精品在线WWW.TMOOC.CN致力于IT职业技能在线培训提升。目前开设Java、JAVA大数据、Android、iOS、PHP、软件测试、嵌入式、C++、C#、UID、UED、产品经理、Linux云计算、Web前端、VR、网络营销、高级电商、主办会计等20多门课程体系。">
+    <title>达内精品在线TMOOC-中国权威的it职业教育学习平台</title>
+    <link rel="stylesheet" href="http://cdn.tmooc.cn/tmooc-web/css/iconfont.css"> 
+	<link rel="stylesheet" href="http://cdn.tmooc.cn/tmooc-web/css/style.css">
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script><script src="https://hm.baidu.com/hm.js?51179c297feac072ee8d3f66a55aa1bd"></script><script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script><script src="https://hm.baidu.com/hm.js?51179c297feac072ee8d3f66a55aa1bd"></script><script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script><script src="https://hm.baidu.com/hm.js?51179c297feac072ee8d3f66a55aa1bd"></script><script src="http://cdn.tmooc.cn/tmooc-web/js/jquery-2.1.1.js"></script>
+<link rel="stylesheet" href="http://cdn.tmooc.cn/tmooc-web/js/layer/skin/default/layer.css?v=3.1.1" id="layuicss-layer"></head>
+<body>
+<div class="page-header md-blue-bg">
+    <div class="md2018033001lty">
+    <div class="container">
+        <div class="tmooc-logo pull-left">
+            <a href="http://www.tmooc.cn">
+                <img class="default-logo" src="http://cdn.tmooc.cn/tmooc-web/css/img/tmooc-logo.png">
+                <img class="blue-logo" src="http://cdn.tmooc.cn/tmooc-web/css/img/tmooc-logo2.png">
+            </a>
+        </div>
+        <ul class="slide-nav pull-left clearfix" id="js_slide_nav">
+            <li class="active"><a href="#">首页</a></li>
+            <li><a href="#">学生管理系统</a></li> 
+			<li><a href="#">教师管理系统</a></li>			
+        </ul>
+        <div class="login-area pull-right " id="login_statelty">
+            <!--未登录状态-->
+            <ul class="no-login clearfix">
+                <li><a id="register_xxw" href="http://uc.tmooc.cn/login/jumpToRegister">注册</a></li>
+                <li class="line">|</li>
+                <li><a id="login_xxw" href="#">登录</a></li>
+            </ul>
+            <!--登录状态-->
+            <div class="logined hide" style="display: none;">
+                <div class="md-2018040202-lty">
+                    <div class="drop-menu" id="js_init_dropmenu">
+                        <div class="md-2018040801-lty">
+                            <a href="#">
+                                <img class="js-headpic-xxw" id="tobbar_userimg" src="http://cdn.tmooc.cn/tmooc-web/css/img/user-head.jpg" alt="">
+                            </a>
+                        </div>
+                        <ul class="drop-menu-list bgcolor-fff">
+                            <li class="user-name link-color"><a href="#" id="tobbar_username"></a></li>
+                            <li><a href="#" id="js_go_ynote">我的云笔记</a></li>
+                            <li id="js_isshow_tts" style="display: none;"><a onclick="checkTtsUser()" style="cursor: pointer;">我的TTS</a></li>
+                            <li><a href="#" id="js_loginout">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+<div class="page-con bgcolor-f6f5fa">
+    <div class="md2018040302lty bgcolor-fff">
+        <div class="container">
+            <div class="banner-box clearfix">
+                <!--左侧菜单栏-->
+                <div class="menu-con pull-left">
+                    <ul class="menu-list" id="js_control_menu">
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>袁庆嘉</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div class="item" style="display: none;">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                        111
+                                    </div>
+                                    <div class="course-item clearfix">
+											11111
+                                    </div>
+                                </div>                             
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>李方明</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div class="item" style="display: none;">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                    	22222
+                                    </div>
+                                    <div class="course-item clearfix">
+                                    	222222
+                                    </div>
+                                </div>                           
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>李佳</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div class="item" style="display: none;">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                    	333333333
+                                    </div>
+                                    <div class="course-item clearfix">
+                                    	33333333333
+                                    </div>
+                                </div>                            
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>郭一达</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div class="item" style="display: none;">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                    	444444444
+                                    </div>
+                                    <div class="course-item clearfix">
+                                    	4444444444
+                                    </div>
+                                </div>                
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>李宁</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div class="item">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                    	555555
+                                    </div>
+                                    <div class="course-item clearfix">
+                                    	5555555
+                                    </div>
+                                   
+                                </div>                               
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>余姚</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div style="display: none;" class="item">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+                                    	6666666666
+                                    </div>
+									<div class="course-item clearfix">
+                                    	6666
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="color-999 ">
+                                <span>刘委坪</span>
+                                <i class="verflag"></i>
+                                <i class="cusfont cusfont-more"></i>
+                            </a>
+                            <div style="display: none;" class="item">
+                                <div class="course-list">
+                                    <div class="course-item clearfix">
+									777777
+                                    </div>
+									<div class="course-item clearfix">
+									777777
+                                    </div>
+                                </div>                             
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--右侧banner区-->
+                <div class="banner-con pull-left">
+                    <!--轮播区-->
+                    <div class="carousel-area" id="js_control_carousel">
+                        <div class="hd">
+                            <ul class="clearfix">
+                            			<li class="on"></li>
+                            			<li class=""></li>
+                            			<li class=""></li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <div style="overflow:hidden; position:relative; width:975px;height:440px" class="tempWrap"><div style="overflow:hidden; position:relative; width:975px;height:440px" class="tempWrap"><div class="tempWrap" style="overflow:hidden; position:relative; width:975px"><ul style="width: 2925px; left: 0px; position: relative; overflow: hidden; padding: 0px; margin: 0px; height: 440px;">
+                                	<li style="float: left; width: 975px;;height:440px">	
+                                		<img src="http://cdn.tmooc.cn/bsfile//imgad///71AD1B7F172C49719BA74E9A0987B7E2.png" alt="">
+                                	</li>
+                                	<li style="float: left; width: 975px;;height:440px">
+                                		<img src="http://cdn.tmooc.cn/bsfile//imgad///C1955ACADFC24B188BCBAFF548597A36.png" alt="">
+                                	</li>
+                                	<li style="float: left; width: 975px;;height:440px">
+                                		<img src="http://cdn.tmooc.cn/bsfile//imgad///6B47B6F1758E409BBD9559DF4CB14A8A.jpg" alt="">
+                                	</li>
+                            </ul></div></div></div>
+                        </div>
+                        <a href="javascript:void(0)" class="direct-btn prev"><i class="cusfont cusfont-left"></i></a>
+                        <a href="javascript:void(0)" class="direct-btn next"><i class="cusfont cusfont-more"></i></a>
+                    </div>
+                    <!--广告区
+                    <div class="ad-area bgcolor-fff">
+                        <ul class="ad-list clearfix">
+                        		<li>
+                        				<a href="http://uc.tmooc.cn/tmoocVipCenter/keepStudy" class="clearfix" target="_blank">
+	                                    <div class="ad-r pull-right">
+	                                        <h3 class="font-14 color-333 text-overflow">加入会员</h3>
+	                                        <p class="color-888 text-overflow">尊享超值会员权益</p>
+	                                    </div>
+	                                    <img src="http://cdn.tmooc.cn/tmooc-web/imgad/2018/5/24//E96B1941956543B7B3D86FE98F77EA2F.png" alt="" class="pull-left" width="32" height="32">
+                                	</a>
+	                            </li>
+                        		<li>
+                        				<a href="http://uc.tmooc.cn/userCenter/jumpToUserCenterSecurity" class="clearfix" target="_blank">
+	                                    <div class="ad-r pull-right">
+	                                        <h3 class="font-14 color-333 text-overflow">手机绑定</h3>
+	                                        <p class="color-888 text-overflow">获得资料下载权限</p>
+	                                    </div>
+	                                    <img src="http://cdn.tmooc.cn/tmooc-web/imgad/2018/5/24//3432BC7ACD854AEE9744FA2A0E6BE940.png" alt="" class="pull-left" width="32" height="32">
+                                	</a>
+	                            </li>
+                        		<li>
+                        				<a href="http://www.tmooc.cn/online-apply/" class="clearfix" target="_blank">
+	                                    <div class="ad-r pull-right">
+	                                        <h3 class="font-14 color-333 text-overflow">表单报名</h3>
+	                                        <p class="color-888 text-overflow">获赠平安就业险</p>
+	                                    </div>
+	                                    <img src="http://cdn.tmooc.cn/tmooc-web/imgad/2018/5/25//3AE7ED861379427BAC9E3ED1204E35ED.png" alt="" class="pull-left" width="32" height="32">
+                                	</a>
+	                            </li>
+                        		<li>
+                        				<a href="http://www.tmooc.cn/help" class="clearfix" target="_blank">
+	                                    <div class="ad-r pull-right">
+	                                        <h3 class="font-14 color-333 text-overflow">帮助页面</h3>
+	                                        <p class="color-888 text-overflow">带你玩转TMOOC</p>
+	                                    </div>
+	                                    <img src="http://cdn.tmooc.cn/tmooc-web/imgad/2018/5/24//2E9FE243D74D43FFBF025E2F417C3E2F.png" alt="" class="pull-left" width="32" height="32">
+                                	</a>
+	                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="md2018040802lty">
+    </div>
+</div>
+<div class="page-footer">
+    <div class="container">
+    <div class="md2018040301lty clearfix">
+        <div class="bt-fr clearfix pull-right">
+            <div class="b-info text-right pull-left">
+                <p>达内精品在线WWW.TMOOC.CN 专注于IT职业技能培训 </p>
+                <p>涵盖20余门课程体系，致力于打造权威的IT职业教育学习平台</p>
+            </div>
+            <div class="ewm-b pull-left">
+                <img src="http://cdn.tmooc.cn/tmooc-web/css/img/erweima.jpg" alt="" height="75" width="75">
+            </div>
+        </div>
+        <div class="bt-lf clearfix pull-left">
+            <ul class="links clearfix">
+                <li><a href="http://www.tmooc.cn/aboutus/index.shtml">关于我们</a></li>
+                <li>|</li>
+                <li><a href="http://www.tmooc.cn/join/index.shtml">招聘信息</a></li>
+                <li>|</li>
+                <li><a href="http://www.tmooc.cn/contactus/index.shtml">联系我们</a></li>
+                <li>|</li>
+                <li><a href="http://www.tmooc.cn/business/index.shtml">商务合作</a></li>
+                <!-- <li>|</li>
+                <li><script src="https://s13.cnzz.com/z_stat.php?id=1273669604&web_id=1273669604" language="JavaScript"></script></li> -->
+                <li>|</li>
+                <li><a href="http://tts.tmooc.cn/ttsPage/vipService.html" target="_blank">VIP服务</a></li>
+            </ul> 
+            <p class="copyright">Copyright © 北京达内金桥科技有限公司版权所有 京ICP备12003709号-3</p>
+        </div>
+        <div class="bt-line"></div>
+    </div>
+</div>
+<!-- 登录弹窗 -->
+<div style="display: none;">
+    <div class="md-2018040402-ll cus-win-model js-md-180417-login-cj" id="login_boxxxw">
+        <div class="js-log-type" data-logtype="0">
+            <div class="tit">登录</div>
+            <div id="wb_login_form" class="form-ele-box">
+                <div class="form-item clearfix">
+                    <div class="form-inp-area">
+                        <input id="wb_account_pm" class="form-input" value="" cusrule="mail_phone" placeholder="邮箱或手机号" autocomplete="off" type="text">
+                        <span class="form-tips">邮箱或手机号格式错误</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix">
+                    <div class="form-inp-area">
+                        <input id="wb_password" class="form-input" value="" placeholder="密码" autocomplete="off" type="password">
+                        <span class="form-tips">包含数字、字母、下划线的6-18位</span>
+                    </div>
+                </div>
+                <div id="js_validate_img_area" class="form-item clearfix" style="display: none;">
+                    <div class="form-inp-area">
+                        <input id="wb_imgcode" class="form-input pull-left" value="" placeholder="验证码" style="width: 80px; margin-right: 15px;" autocomplete="off" type="text">
+                        <img id="js_validate_img" class="pull-left code-img js-validate-img" src="http://uc.tmooc.cn/validateCode?t=0.5083899310641634" style="cursor:pointer; margin-right: 15px;" height="40px" width="80px">
+                        <div class="form-inlineblock pull-left code-btn js-validate-img">
+                            <span class="verflag" style="cursor:pointer;">看不清楚？换一张</span>
+                            <i class="verflag"></i>
+                        </div>
+                        <span class="form-tips">验证码格式错误</span>
+                    </div>
+                </div> 
+                <div class="form-item clearfix">
+                    <button id="js_submit_login" class="form-btn form-btn-blue width-100" type="button">登录</button>
+                </div>
+                <div class="form-item clearfix" style="font-size: 12px;">
+                    <div class="form-checkbox pull-left" style="display: none;">
+                        <label><input checked="checked" type="checkbox"><span>下次自动登录</span></label>
+                    </div>
+                    <div class="pull-right color-aaa" style="padding-top: 2px;">
+                        <a href="http://uc.tmooc.cn/login/jumpToUserFindPassword" class="color-aaa">忘记密码</a>&nbsp;|&nbsp;<a href="http://uc.tmooc.cn/login/jumpToRegister" class="color-aaa">注册</a>
+                    </div>
+                </div>
+                <div class="other-loginbox">
+                    <p class="c-tit color-aaa text-center">第三方账号登录</p>
+                    <div class="c-btns">
+                        <div class="c-fbtn">
+                            <a class="c-btn js-log-type-cut"><i class="cusfont cusfont-wechat"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="js-log-type" data-logtype="3" style="display: none;">
+            <div id="js_wx_code_log" class="text-center"></div>
+            <div class="other-loginbox">
+                <div class="c-btns">
+                    <div class="c-fbtn js-log-type-cut">返回账号登录</div>
+                </div>
+            </div>
+        </div>
+        <span class="cus-win-modelclose js-closewin-btn"><i class="cusfont cusfont-close font-14"></i></span>
+    </div>
+</div>
+<!-- 登录弹窗 end -->
+<!-- 支付状态弹窗 start  
+<div style="display: none;">
+    <div class="md-2018040423-ll cus-win-model" id="md_2018040423_ll">
+        <div class="tit">支付完成</div>
+        <p style="text-align: center;"><img src="http://cdn.tmooc.cn/tmooc-web/css/img/img2018042301_ll.png"></p>
+        <div style="text-align: center; padding-top: 10px;">
+            <p class="color-red" id="js_error_tips" style="margin: 5px 0;opacity: 0;"><i class="cusfont cusfont-warning "></i>未支付成功，请在支付页面继续完成支付！</p>
+            <a class="form-btn form-btn-default" style="line-height: 24px; margin: 0 10px;" href="http://www.tmooc.cn/help/index.shtml" target="_blank">支付遇到问题</a>
+            <button class="form-btn form-btn-blue" type="button" id="js_pay_btn">已支付完成</button>
+        </div>
+        <span class="cus-win-modelclose js-closewin-btn"><i class="cusfont cusfont-close font-14"></i></span>
+    </div>
+</div>
+ 支付状态弹窗 end -->
+<!-- TTS用户验证start -->
+<div style="display: none;">
+    <div class="md2018041301lty bgcolor-fff cus-win-model" id="js_yz_video">
+        <div class="tit-md">
+            <span>提示</span>
+            <span class="cus-win-modelclose js-closewin-btn"><i class="cusfont cusfont-close font-14"></i></span>
+        </div>
+        <div class="con-bd">
+            <p class="font-16 text-center">您需要进行账号验证<br>请<a href="http://uc.tmooc.cn/userCenter/userValidate" class="link-color">点击此处</a>跳转</p>
+        </div>
+    </div>
+</div>
+<!-- TTS用户验证end -->
+
+<!-- 在线报名start 
+<div style="display: none;">
+    <div class="md-2018040402-ll md2018041201lty cus-win-model" id="sign_uplty">
+        <form action="" id="sign-formlty">
+            <div class="tit">线下脱产班在线报名</div>
+            <div class="form-ele-box form-inline-box">
+                <div class="form-item clearfix">
+                    <label class="form-label">手机号<span class="color-red">*</span></label>
+                    <div class="form-inp-area">
+                        <input class="form-input" value="" type="text" id="telephone" placeholder="请输入手机号" cusrule="phone" autocomplete="off">
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>请输入正确的手机号码</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix">
+                    <label class="form-label">QQ<span class="color-red">*</span></label>
+                    <div class="form-inp-area">
+                        <input class="form-input" value="" type="text" id="qq" placeholder="请输入QQ号" cusrule="qq" autocomplete="off">
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>请输入5到11位的QQ号码</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix">
+                    <label class="form-label">姓名<span class="color-red">*</span></label>
+                    <div class="form-inp-area">
+                        <input class="form-input" value="" type="text" id="name" placeholder="请输入姓名" cusrule="ch_and_en" autocomplete="off">
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>请输入中文或英文</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix select-item">
+                    <label class="form-label">地址<span class="color-red">*</span></label>
+                    <div class="form-inp-area" style="width:160px;margin-right:20px;">
+                        <div class="x-choose-down">
+                            <div class="x-ipt-group pull-left" id="js_province">
+                                <div class="custom_sel_text">请选择</div>
+                                <ul class="custom_sel_list" style="display: none;"><li class="option" ord_id="1">北京</li><li class="option" ord_id="2">天津</li><li class="option" ord_id="3">上海</li><li class="option" ord_id="4">重庆</li><li class="option" ord_id="5">河北</li><li class="option" ord_id="6">山西</li><li class="option" ord_id="7">台湾</li><li class="option" ord_id="8">辽宁</li><li class="option" ord_id="9">吉林</li><li class="option" ord_id="10">黑龙江</li><li class="option" ord_id="11">江苏</li><li class="option" ord_id="12">浙江</li><li class="option" ord_id="13">安徽</li><li class="option" ord_id="14">福建</li><li class="option" ord_id="15">江西</li><li class="option" ord_id="16">山东</li><li class="option" ord_id="17">河南</li><li class="option" ord_id="18">湖北</li><li class="option" ord_id="19">湖南</li><li class="option" ord_id="20">广东</li><li class="option" ord_id="21">甘肃</li><li class="option" ord_id="22">四川</li><li class="option" ord_id="24">贵州</li><li class="option" ord_id="25">海南</li><li class="option" ord_id="26">云南</li><li class="option" ord_id="27">青海</li><li class="option" ord_id="28">陕西</li><li class="option" ord_id="29">广西</li><li class="option" ord_id="30">西藏</li><li class="option" ord_id="31">宁夏</li><li class="option" ord_id="32">新疆</li><li class="option" ord_id="33">内蒙古</li><li class="option" ord_id="34">澳门</li><li class="option" ord_id="35">香港</li><li class="option" ord_id="36">其他</li></ul>
+                                <span class="text-center">
+                                    <i class="cusfont cusfont-under"></i>
+                                    <i class="verflag"></i>
+                                </span>
+                                <input type="hidden" class="custom_sel_val" id="province" name="" value="" cusrule="required">
+                            </div>
+                        </div>
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>不能为空</span>
+                    </div>
+                    <div class="form-inp-area" style="width:160px;">
+                        <div class="x-choose-down">
+                            <div class="x-ipt-group pull-left" id="js_city">
+                                <div class="custom_sel_text">请选择</div>
+                                <ul class="custom_sel_list" style="display: none;">
+                                </ul>
+                                <span class="text-center">
+                                    <i class="cusfont cusfont-under"></i>
+                                    <i class="verflag"></i>
+                                </span>
+                                <input type="hidden" class="custom_sel_val" id="city" name="" value="" cusrule="required">
+                            </div>
+                        </div>
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>不能为空</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix select-item">
+                    <label class="form-label">学科<span class="color-red">*</span></label>
+                    <div class="form-inp-area" style="width:160px;margin-right:20px;">
+                        <div class="x-choose-down">
+                            <div class="x-ipt-group pull-left" id="js_subject">
+                                <div class="custom_sel_text">请选择</div>
+                                <ul class="custom_sel_list" style="display: none;"><li class="option" ord_id="2F6829DB95FC40B88DA3B32EBF76B95B">前端开发</li><li class="option" ord_id="09EE41ADAD8C49BEB320846E2D9D6226">大数据</li><li class="option" ord_id="4750A455098E4BB29394E40F39A7487E">移动开发</li><li class="option" ord_id="FD9EF973DCC04001AEE91C5E560D13D0">物联网</li><li class="option" ord_id="A6E31CB53B904945B55C87887588A926">测试</li><li class="option" ord_id="053B7852EC86467CB92F5AFEB8C18E3B">营销</li><li class="option" ord_id="C285947B461546A79AAB3345B837AAF7">数字艺术</li><li class="option" ord_id="2A4E9E99BAAA4011B1B03B794F6CB7B1">其他职业课程</li><li class="option" ord_id="333A34613EF94216BC00B2A877A406DA">云计算</li><li class="option" ord_id="41476FE3B52B48FD855598F520972379">后端开发</li><li class="option" ord_id="7D76A04C21184B06AB0F88416AB69C46">游戏</li><li class="option" ord_id="26A6F0CCC6534C79BC27D41600796B57">运营</li><li class="option" ord_id="C3BC9CBD3F2C4BB5AE646E6A9D1FDBE4">产品</li></ul>
+                                <span class="text-center">
+                                    <i class="cusfont cusfont-under"></i>
+                                    <i class="verflag"></i>
+                                </span>
+                                <input type="hidden" class="custom_sel_val" id="subject" name="" value="" cusrule="required">
+                            </div>
+                        </div>
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>不能为空</span>
+                    </div>
+                    <div class="form-inp-area" style="width:160px;">
+                        <div class="x-choose-down">
+                            <div class="x-ipt-group pull-left" id="js_course">
+                                <div class="custom_sel_text">请选择</div>
+                                <ul class="custom_sel_list" style="display: none;">
+                                </ul>
+                                <span class="text-center">
+                                    <i class="cusfont cusfont-under"></i>
+                                    <i class="verflag"></i>
+                                </span>
+                                <input type="hidden" class="custom_sel_val" id="course" name="" value="" cusrule="required">
+                            </div>
+                        </div>
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>不能为空</span>
+                    </div>    
+                </div>
+                <div class="form-item clearfix">
+                    <label class="form-label">验证码<span class="color-red">*</span></label>
+                    <div class="form-inp-area">
+                        <input id="js_imgCode_lty" class="form-input pull-left" cusrule="code_en" autocomplete="off" cuslength="4" value="" type="text" placeholder="验证码" style="width: 110px; margin-right: 15px;">
+                        <img id="js_validate_img_lty" class="pull-left code-img js-validate-img-lty" style="cursor:pointer;margin-right: 15px;" src="http://uc.tmooc.cn/validateCode?t=0.5831447591343806" width="80px" height="40px">
+                        <div class="form-inlineblock pull-left code-btn js-validate-img-lty" style="width:120px;">
+                            <span class="verflag" style="cursor: pointer;">看不清楚？换一张</span>
+                            <i class="verflag"></i>
+                        </div>
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>请输入正确的验证码</span>
+                    </div>
+                </div>
+                <div class="form-item clearfix">
+                    <label class="form-label">动态码<span class="color-red">*</span></label>
+                    <div class="form-inp-area" style="width:230px;">
+                        <input id="js_phoneCode_lty" class="form-input pull-left" cusrule="required" autocomplete="off" value="" type="text" placeholder="动态码">
+                        <span class="form-tips"><i class="cusfont cusfont-warning"></i>请输入正确的动态码</span>
+                    </div>
+                    <button id="js_getPhoneCode" class="form-btn form-btn-blue pull-right" type="button">获取动态码</button>
+                </div>
+                <div class="form-item clearfix">
+                    <label class="form-label">备注</label>
+                    <div class="pull-left" style="width:340px;">
+                        <textarea name="" cols="" rows="" class="form-input form-textarea" id="remark"></textarea>
+                        <p class="font-14 rest-num">还可以输入<span class="total-num" id="js_total_lty">255</span>个字符</p>
+                    </div>
+                </div>
+                <div class="form-item clearfix ">
+                    <button class="form-btn form-btn-blue  sign-btn" id="js_sign_btn" type="button">提交</button>
+                </div>
+                
+              
+            </div>
+            </form>
+        <span class="cus-win-modelclose js-closewin-btn"><i class="cusfont cusfont-close font-14"></i></span>    
+    </div>
+</div>
+在线报名end  -->
+<!-- 右侧悬浮框 start -->
+<div class="md2018040901lty">
+    <div class="nav-r bgcolor-fff">
+        <ul class="guide-list">
+            <li><a href="http://q.url.cn/AB0fYo?_type=wpa&amp;qidian=true" target="_blank"><img src="http://cdn.tmooc.cn/tmooc-web/css/img/service.gif"></a></li>
+            <li class="sign-up-lty"><a id="js_sign_up" href="#"><i class="cusfont cusfont-sign-up"></i></a></li>
+            <li class="ph">
+                <a href="javascript:void(0)">
+                    <i class="cusfont cusfont-phone"></i>
+                    <div class="ph-show bgcolor-fff">
+                        <i></i>
+                        <span><i class="cusfont cusfont-phone"></i>18610661299</span>
+                    </div>
+                </a>
+            </li>
+            <li id="js_comback"><a href="#"><i class="cusfont cusfont-comeback"></i></a></li>
+        </ul>
+    </div>
+</div>
+<!-- 右侧悬浮框 end -->
+
+<!-- <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script> -->
+<script src="http://cdn.tmooc.cn/tmooc-web/js/jsmd5.js"></script>
+<script type="text/javascript">
+    $(function(){
+        initLoginFn(); //初始化登录
+        getUserLoginStatus(); //获取用户登录状态信息
+
+        /*点击搜索按钮*/
+        $('#js_control_search').click(function(){
+            var k_ = $.trim($('#js_search_inp').val());
+
+            if(window.SEARCHPAGE_){
+                if(k_){
+                    $('.js-key-word').eq(0).text(k_);
+                    resetSearch(1);
+                    flag_ = true;
+                    getClasslset(getSearchobj({searchCore:k_}));
+                }else {
+                    layer.msg('请输入搜索内容');
+                    return;
+                }
+            }else {
+                location.href='http://www.tmooc.cn/search/index.shtml#searchCore='+encodeURI(encodeURI(k_));//+'categoryId='+($(".js-lv-xxw span.curx").data('id') || "0");
+            }
+            $('#js_search_inp').val('');
+        });
+        $('#js_search_inp').keypress(function(e){
+            if(e.keyCode===13){
+                $('#js_control_search').trigger('click');
+            }
+        });
+    });
+</script>
+<!-- 百度统计start  -->
+<script>
+var _hmt = _hmt || [];
+$(function(){
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?51179c297feac072ee8d3f66a55aa1bd";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+});
+</script>
+<!-- 百度统计end  -->
+<!-- 加载微信start 因部分中心不能访问微信，因此延时加载，防止阻塞 -->
+<script>
+$(function(){
+  (function() {
+    var wx = document.createElement("script");
+    wx.src = "http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js";
+    var wx_s = document.getElementsByTagName("script")[0]; 
+    wx_s.parentNode.insertBefore(wx, wx_s);
+  })();
+});
+</script>
+<!-- 加载微信end  -->
+
+</div>
+
+
+
+
+<script src="http://cdn.tmooc.cn/tmooc-web/js/addressDPage.js"></script>
+<script src="http://cdn.tmooc.cn/tmooc-web/js/colorbox/jquery.colorbox-min.js"></script>
+<script src="http://cdn.tmooc.cn/tmooc-web/js/jquery.SuperSlide.2.1.2.js"></script>
+<script src="http://cdn.tmooc.cn/tmooc-web/js/app.js"></script>
+<script src="http://cdn.tmooc.cn/tmooc-web/js/layer/layer.js"></script>
+<script src="http://cdn.tmooc.cn/tmooc-web/js/jquery-cookie.js"></script>
+<script>
+    /*下拉菜单*/
+    $(function () {
+        /*顶部banner区左侧导航*/
+        $('#js_control_menu').slide({defaultPlay: false, type: 'menu', titCell: '.sub', targetCell: '.item', effect: 'fade', delayTime: 100, triggerTime: 0, returnDefault: true})
+        /*顶部轮播区*/
+        $("#js_control_carousel").slide({mainCell: ".bd ul", autoPlay: true, effect: 'left'})
+    })
+</script>
+
+
+<div id="cboxOverlay" style="opacity: 0; visibility: visible; display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none; visibility: visible; top: 0px; left: 760px; position: absolute; width: 400px; height: 466px; opacity: 0;"><div id="cboxWrapper" style="height: 466px; width: 400px;"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left; width: 400px;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left; height: 466px;"></div><div id="cboxContent" style="float: left; width: 400px; height: 466px;"><div id="cboxTitle" style="float: left; display: block;"></div><div id="cboxCurrent" style="float: left; display: none;"></div><button type="button" id="cboxPrevious" style="display: none;"></button><button type="button" id="cboxNext" style="display: none;"></button><button type="button" id="cboxSlideshow" style="display: none;"></button></div></div></div></div><div style="display: none;" id="cboxOverlay"></div><div style="display: none;" tabindex="-1" role="dialog" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div style="float: left;" id="cboxTitle"></div><div style="float: left;" id="cboxCurrent"></div><button id="cboxPrevious" type="button"></button><button id="cboxNext" type="button"></button><button id="cboxSlideshow" type="button"></button><div style="float: left;" id="cboxLoadingOverlay"></div><div style="float: left;" id="cboxLoadingGraphic"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div></div></div></div><div style="display: none;" id="cboxOverlay"></div><div style="display: none;" tabindex="-1" role="dialog" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div style="float: left;" id="cboxTitle"></div><div style="float: left;" id="cboxCurrent"></div><button id="cboxPrevious" type="button"></button><button id="cboxNext" type="button"></button><button id="cboxSlideshow" type="button"></button><div style="float: left;" id="cboxLoadingOverlay"></div><div style="float: left;" id="cboxLoadingGraphic"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

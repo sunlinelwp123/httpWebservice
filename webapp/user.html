@@ -1,0 +1,243 @@
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta content="always" name="referrer">
+    <meta name="theme-color" content="#2932e1">
+	<link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css"	rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+	<!-- BEGIN THEME CSS -->
+	<link href="./assets/global/css/components.css" rel="stylesheet"	type="text/css" />
+	<link href="./assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/admin/layout/css/custom.css" rel="stylesheet"	type="text/css" />
+	<link href="./assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/select2/select2.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+	<link href="./assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+	<link href="./assets/global/plugins/jquery-autocomplete/jquery.autocomplete.css" rel="stylesheet" type="text/css"/>	
+	<link href="./css/bootstrap/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
+	<!--<link href="./css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>-->
+        <title>用户管理</title>
+		<script src="./js/plugins/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script type="text/javascript" charset="utf8" src="./js/plugins/jquery.dataTables.js"></script>
+		<script src="./js/plugins/datatable.js" type="text/javascript"></script>
+		<script src="./js/plugins/hello.js" type="text/javascript"></script>
+		<script>
+		
+		$(document).ready(function(){
+		/**
+			$("button").click(function(){
+				var checkData  = {
+							"username":"alice"
+						 };
+				Hello.ajaxHello("user/sUser", checkData, "POST", 
+						function(ret){
+							console.log(ret);
+							//alert(ret.sex);
+						}, 
+						function(ret){
+							console.log(ret)
+						}, "json",true);
+			});**/
+			var grid = new Datatable();
+			var table=$("#user_ajax");
+		
+			var url = "user/sUser"; 
+			
+             $('#user_ajax').DataTable( {
+		    "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                    "pageLength": 10, 
+                    "lengthMenu": [
+						[10, 20],
+						[10, 20]
+                    ],
+		     filterApplyAction: "filter",
+                filterCancelAction: "filter_cancel",
+                resetGroupActionInputOnSuccess: true,
+                loadingMessage: '加载中...',
+                    "language": { // language settings
+                        "metronicGroupActions": "_TOTAL_ 记录被选择:  ",
+                        "metronicAjaxRequestGeneralError": "不能完成请求，请检查网络链接",
+                        "lengthMenu": "<span class='seperator'>|</span>显示 _MENU_ 条记录",
+                        "info": "<span class='seperator'>|</span>共 _TOTAL_ 条记录",
+                        "infoEmpty": "没有数据可显示",
+                        "emptyTable": "没有可用记录",
+                        "zeroRecords": "抱歉， 没有找到",
+                        "infoFiltered": "(从 _MAX_ 条记录中过滤)",
+                        "paginate": {
+                            "previous": "上页",
+                            "next": "下页",
+                            "last": "尾页",
+                            "first": "首页",
+                            "page": "第",
+                            "pageOf": "页  总页数"
+                        }
+                    },
+					"pagingType": "full",// numbers  simple simple_numbers full full_numbers first_last_numbers
+		     		"processing": false,
+        			"serverSide": true,
+		        "ajax": {
+			           "url":"rest/user/fUser",
+				   "type": "POST",
+				   "data":function ( d ) {
+							return  JSON.stringify(d);
+							//JSON.parse(d);
+					},
+					"dataType": "json",
+					"contentType": "application/json;charset=UTF-8"
+			},
+		     	"columns": [
+			    { 
+				"data": "username" ,	
+				  "sortable": false,
+	            	"searchable": false
+					},
+			    { "data": "userid" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "status",	
+				  "sortable": false,
+	            	"searchable": false },
+			    { "data": "usercasue" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "useremail" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "userwcat" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "usersina" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "usertelno" ,	
+				  "sortable": false,
+	            	"searchable": false},
+			    { "data": "usertype",	
+				  "sortable": false,
+	            	"searchable": false },
+			    { "data": null,
+		              "width": "50%",
+		              "sortable": false,
+		              "searchable": false,
+		              "render": function (data, type, full) {
+		            		return "<a class='edit' href='javascript:;' data-src='" + data.userid + "'>编辑 </a>" 
+							+"<a class='del' href='javascript:;' data-src='" + data.userid + "'>删除 </a>";
+		               }
+		            }
+			]
+			});
+			/*
+			var sendData = ["username","userid"];
+			table.on("click", $(".deluser"), function (e) {
+				//获取选中行数据
+				 e.preventDefault();
+		            var editObj = $(this);
+	            	var data = {};
+	   	           	var dataValue = editObj.attr("data-src").split(",");
+	   	           	for(var i = 0; i < sendData.length; i++){
+	   	           		Object.defineProperty(data, sendData[i], {
+	   	        		   value: dataValue[i]});
+	   	           	}
+	   	          
+	   	           	var nRowA = $(editObj.parents('tr')[0]).find("td");
+	   	           	handler(data);	
+					var redata={};
+						
+			       redata.userid=data.userid
+        	   bootbox.confirm("确定要注销此用户么?", function(result) { 
+	            	if(!result){
+	            		return;
+	            	}
+	            	Sunline.ajaxRouter("auth/allUser",redata,"DELETE",function(data,status){ 
+     					$('.msg', editform).text(data.retMsg);
+     					if(data.ret=="success"){
+     						bootbox.alert("注销成功");
+     						grid.submitFilter();
+     					}else{		
+     						bootbox.alert(data.msg);							
+     					}
+     					},function(){
+     						bootbox.alert("请求失败");	
+     					},"json");
+        	  
+        	  });
+			});*/
+			
+		});
+		</script>
+</head>
+<body>
+ <div class="col-md-12">
+	<div class="portlet light">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-user font-green-sharp"></i> <span
+					class="caption-subject font-green-sharp bold uppercase">用户管理</span>
+				<span class="caption-helper">用户</span>
+			</div>
+		</div>	
+		<div class="portlet-body">
+			<div class="table-container">
+				<div class="table-actions-wrapper">
+					<span> </span>
+					<button id="add_new_user"
+						class="btn btn-sm green table-group-action-submit">
+						新增用户<i class="fa fa-plus"></i>
+					</button>
+				</div>
+				<table class="table table-striped table-bordered table-hover"
+					id="user_ajax">
+					<thead>
+						<tr role="row" class="heading">
+							<th width="10%">用户名</th>
+							<th width="10%">用户ID</th>
+							<th width="4%">状态</th>
+							<th width="8%">注册方式</th>
+							<th width="10%">邮箱</th>
+							<th width="10%">微信</th>
+							<th width="10%">微博账号</th>
+							<th width="10%">电话</th>
+							<th width="6%">用户类型</th>
+							<th width="12%">操作</th>
+						</tr>
+						<tr role="row" class="filter">
+							<td><input type="text"
+								class="form-control form-filter input-sm" style="width:80%" name="q_userid"
+								id="q_userid" /></td>
+							<td><input type="text"
+								class="form-control form-filter input-sm" style="width:80%" name="q_userna"
+								id="q_userna" /></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<button class="btn btn-sm yellow filter-submit margin-bottom">
+									<i class="fa fa-search"></i> 查询
+								</button>
+								<button class="btn btn-sm red filter-cancel">
+									<i class="fa fa-times"></i> 清空
+								</button>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>

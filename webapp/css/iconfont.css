@@ -1,0 +1,120 @@
+@font-face {font-family: "cusfont";
+  src: url('../fonts/iconfont.eot?t=1528688446116'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1528688446116#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1528688446116') format('woff'), 
+  url('../fonts/iconfont.ttf?t=1528688446116') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1528688446116#cusfont') format('svg'); /* iOS 4.1- */
+}
+
+.cusfont {
+  font-family:"cusfont" !important;
+  display:inline-block;
+  line-height:1;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cusfont-certified:before { content: "\e6cc"; }
+
+.cusfont-company:before { content: "\e6cd"; }
+
+.cusfont-computer:before { content: "\e6ce"; }
+
+.cusfont-comeback:before { content: "\e6cf"; }
+
+.cusfont-comeback2:before { content: "\e6d0"; }
+
+.cusfont-download:before { content: "\e6d1"; }
+
+.cusfont-course:before { content: "\e6d2"; }
+
+.cusfont-entername:before { content: "\e6d3"; }
+
+.cusfont-diamond:before { content: "\e6d4"; }
+
+.cusfont-free:before { content: "\e6d5"; }
+
+.cusfont-help:before { content: "\e6d6"; }
+
+.cusfont-like:before { content: "\e6d8"; }
+
+.cusfont-pc:before { content: "\e6d9"; }
+
+.cusfont-news:before { content: "\e6da"; }
+
+.cusfont-notes:before { content: "\e6db"; }
+
+.cusfont-playing:before { content: "\e6dc"; }
+
+.cusfont-phone:before { content: "\e6dd"; }
+
+.cusfont-playback:before { content: "\e6de"; }
+
+.cusfont-right:before { content: "\e6df"; }
+
+.cusfont-service:before { content: "\e6e0"; }
+
+.cusfont-share:before { content: "\e6e1"; }
+
+.cusfont-rocket:before { content: "\e6e2"; }
+
+.cusfont-teacher:before { content: "\e6e3"; }
+
+.cusfont-users:before { content: "\e6e4"; }
+
+.cusfont-wechat:before { content: "\e6e5"; }
+
+.cusfont-qq:before { content: "\e6e6"; }
+
+.cusfont-answer:before { content: "\e6e7"; }
+
+.cusfont-video:before { content: "\e6e8"; }
+
+.cusfont-search:before { content: "\e6e9"; }
+
+.cusfont-template:before { content: "\e6eb"; }
+
+.cusfont-down:before { content: "\e6ec"; }
+
+.cusfont-more:before { content: "\e6ed"; }
+
+.cusfont-left:before { content: "\e6ee"; }
+
+.cusfont-under:before { content: "\e6ef"; }
+
+.cusfont-on:before { content: "\e6f0"; }
+
+.cusfont-heart:before { content: "\e6ea"; }
+
+.cusfont-videoplay:before { content: "\e6f1"; }
+
+.cusfont-play2:before { content: "\e6f2"; }
+
+.cusfont-content:before { content: "\e6f3"; }
+
+.cusfont-clock:before { content: "\e6f4"; }
+
+.cusfont-class:before { content: "\e6f5"; }
+
+.cusfont-course1:before { content: "\e6f6"; }
+
+.cusfont-warning:before { content: "\e6f7"; }
+
+.cusfont-close:before { content: "\e6f9"; }
+
+.cusfont-king:before { content: "\e6f8"; }
+
+.cusfont-sign-up:before { content: "\e6fa"; }
+
+.cusfont-date:before { content: "\e6fb"; }
+
+.cusfont-summary:before { content: "\e6fc"; }
+
+.cusfont-employment:before { content: "\e6fd"; }
+
+.cusfont-money:before { content: "\e6fe"; }
+
+.cusfont-books:before { content: "\e6ff"; }
+
+

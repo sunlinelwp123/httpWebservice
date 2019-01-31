@@ -261,13 +261,13 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 		close(cgi_output[0]);
 		/*close(cgi_input[1]);*/
 		/*等待子进程*/
+		waitpid(pid, &status, 0);
 		//printf("close epollfd %d ******\n", g_Events[i]);
 		eventDel(g_epollFd, &g_Events[i]);
 		//printf("close epollfd %d ******\n", g_Events[j]);
 		eventDel(g_epollFd, &g_Events[j]);
 		//printf("close epollfd %d ******\n", *cev);
 		eventDel(g_epollFd, cev);
-		waitpid(pid, &status, 0);
 	}
 }
 

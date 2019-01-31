@@ -725,4 +725,4 @@ var Metronic = function() {
         }
         
     };
-}();
+};

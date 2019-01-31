@@ -158,6 +158,7 @@ User::~User(void){
  */
 bool User::delUser(Connection_T conn){
 	if(userName == NULL)return false;
+	clog<< "userName"<<userName<<endl;
 	try{
 		Connection_execute(conn, "update WS_SYS_USER set status = '0' where user_name = '%s'", userName);
 		/*Connection_execute(conn, "delete from ws_sys_user where user_name = '%s'", userName); 真删除 */
@@ -266,6 +267,7 @@ bool getUsersForCondition(User *user, Connection_T conn,const char *condition, i
         ResultSet_T result;
 	char sql[1024] = "select org_id,user_id,status,user_type,user_email,user_wcat,user_sina,user_password,user_telno,user_casue,user_name from WS_SYS_USER where 1= 1 ";
 	sprintf((sql + strlen(sql)), "%s", condition ? condition : "");
+	clog<< sql<<endl;
  	page_util(conn, sql, 0, page, size, p_total, p_totalPage, &result);
 	/*page_util(con, sql1, 0, 2, 20 ,&total, &totalPage, &r);
 	ResultSet_T result = Connection_executeQuery(conn,

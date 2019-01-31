@@ -4,183 +4,372 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<meta content="always" name="referrer">
     <meta name="theme-color" content="#2932e1">
+		<!-- BEGIN THEME CSS -->
 	<link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css"	rel="stylesheet" type="text/css" />
 	<link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="./assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-	<!-- BEGIN THEME CSS -->
 	<link href="./assets/global/css/components.css" rel="stylesheet"	type="text/css" />
 	<link href="./assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
 	<link href="./assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
 	<link href="./assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" />
 	<link href="./assets/admin/layout/css/custom.css" rel="stylesheet"	type="text/css" />
-	<link href="./assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-	<link href="./assets/global/plugins/select2/select2.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />	
 	<link href="./assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="./assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
 	<link href="./assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 	<link href="./assets/global/plugins/jquery-autocomplete/jquery.autocomplete.css" rel="stylesheet" type="text/css"/>	
 	<link href="./css/bootstrap/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
+	<link href="./js/plugins/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+		<!-- END THEME CSS -->
 	<!--<link href="./css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>-->
         <title>用户管理</title>
-		<script src="./js/plugins/jquery-3.3.1.min.js" type="text/javascript"></script>
-		<script type="text/javascript" charset="utf8" src="./js/plugins/jquery.dataTables.js"></script>
-		<script src="./js/plugins/datatable.js" type="text/javascript"></script>
-		<script src="./js/plugins/hello.js" type="text/javascript"></script>
-		<script>
-		
-		$(document).ready(function(){
-		/**
-			$("button").click(function(){
-				var checkData  = {
-							"username":"alice"
-						 };
-				Hello.ajaxHello("user/sUser", checkData, "POST", 
-						function(ret){
-							console.log(ret);
-							//alert(ret.sex);
-						}, 
-						function(ret){
-							console.log(ret)
-						}, "json",true);
-			});**/
-			var grid = new Datatable();
-			var table=$("#user_ajax");
-		
-			var url = "user/sUser"; 
-			
-             $('#user_ajax').DataTable( {
-		    "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-                    "pageLength": 10, 
-                    "lengthMenu": [
-						[10, 20],
-						[10, 20]
-                    ],
-		     filterApplyAction: "filter",
-                filterCancelAction: "filter_cancel",
-                resetGroupActionInputOnSuccess: true,
-                loadingMessage: '加载中...',
-                    "language": { // language settings
-                        "metronicGroupActions": "_TOTAL_ 记录被选择:  ",
-                        "metronicAjaxRequestGeneralError": "不能完成请求，请检查网络链接",
-                        "lengthMenu": "<span class='seperator'>|</span>显示 _MENU_ 条记录",
-                        "info": "<span class='seperator'>|</span>共 _TOTAL_ 条记录",
-                        "infoEmpty": "没有数据可显示",
-                        "emptyTable": "没有可用记录",
-                        "zeroRecords": "抱歉， 没有找到",
-                        "infoFiltered": "(从 _MAX_ 条记录中过滤)",
-                        "paginate": {
-                            "previous": "上页",
-                            "next": "下页",
-                            "last": "尾页",
-                            "first": "首页",
-                            "page": "第",
-                            "pageOf": "页  总页数"
-                        }
-                    },
-					"pagingType": "full",// numbers  simple simple_numbers full full_numbers first_last_numbers
-		     		"processing": false,
-        			"serverSide": true,
-		        "ajax": {
-			           "url":"rest/user/fUser",
-				   "type": "POST",
-				   "data":function ( d ) {
-							return  JSON.stringify(d);
-							//JSON.parse(d);
-					},
-					"dataType": "json",
-					"contentType": "application/json;charset=UTF-8"
+		<!-- BEGIN SCRIPT -->	
+	<script src="./js/plugins/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="./assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+	<script src="./assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+	<script src="./assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>			
+	<script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+	<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
+	<script src="./assets/global/plugins/bootbox/bootbox.js" charset="utf8" type="text/javascript"></script>
+	<script type="text/javascript" charset="utf8" src="./js/plugins/jquery.dataTables.js"></script>
+	<script src="./js/plugins/datatable.js" type="text/javascript"></script>
+	<script src="./js/plugins/select2/dist/js/select2.full.js" type="text/javascript" ></script>
+	<script src="./js/plugins/hello.js" type="text/javascript"></script>
+		<!-- END SCRIPT -->
+<style>
+	.select2-drop {
+		z-index: 10050 !important;
+	} 
+	.select2-search-choice-close {
+		margin-top: 0 !important;
+		right: 2px !important;
+		min-height: 10px;
+	}	 
+	.select2-search-choice-close:before {
+		color: black !important;
+	}
+	/*防止select2不会自动失去焦点*/
+	.select2-container {
+		z-index: 16000 !important;
+	}	 
+	.select2-drop-mask {
+		z-index: 15990 !important;
+	}
+	.select2-drop-active {
+		z-index: 15995 !important;
+	}		
+</style>
+<script>	
+$(document).ready(function () {
+	/*******DATATABLE INIT START********/
+	var url = "rest/user/fUser";
+	var grid = new Datatable();
+	var table = $("#user_ajax");
+	var sendData = ["userid", "username"];
+	var statusDict = [{
+			text : "正常[1]",
+			id : "1"
+		}, {
+			text : "未使用[0]",
+			id : "0"
+		}, {
+			text : "注销[2]",
+			id : "2"
+		}, {
+			text : "封停[3]",
+			id : "3"
+		}
+	];
+	var casueDict = [{
+			text : "微信用户[wei]",
+			id : "wei"
+		}, {
+			text : "新浪用户[sin]",
+			id : "sin"
+		}, {
+			text : "普通用户[nor]",
+			id : "nor"
+		}, {
+			text : "邮箱用户[mai]",
+			id : "mai"
+		}, {
+			text : "手机用户[pho]",
+			id : "pho"
+		}
+	];
+	var typeDict = [{
+			text : "学生[s]",
+			id : "s"
+		}, {
+			text : "教师[t]",
+			id : "t"
+		}, {
+			text : "管理员[a]",
+			id : "a"
+		}
+	];	
+	grid.init({
+		src : table,
+		deleteData : sendData,
+		onSuccess : function (grid) {},
+		onError : function (grid) {},
+		dataTable : {
+			"ajax" : {
+				"url" : url,
+				"type" : "POST",
+				"dataType" : "json",
+				"contentType" : "application/json;charset=UTF-8"
 			},
-		     	"columns": [
-			    { 
-				"data": "username" ,	
-				  "sortable": false,
-	            	"searchable": false
-					},
-			    { "data": "userid" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "status",	
-				  "sortable": false,
-	            	"searchable": false },
-			    { "data": "usercasue" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "useremail" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "userwcat" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "usersina" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "usertelno" ,	
-				  "sortable": false,
-	            	"searchable": false},
-			    { "data": "usertype",	
-				  "sortable": false,
-	            	"searchable": false },
-			    { "data": null,
-		              "width": "50%",
-		              "sortable": false,
-		              "searchable": false,
-		              "render": function (data, type, full) {
-		            		return "<a class='edit' href='javascript:;' data-src='" + data.userid + "'>编辑 </a>" 
-							+"<a class='del' href='javascript:;' data-src='" + data.userid + "'>删除 </a>";
-		               }
-		            }
+			"bDestroy" : true,
+			"bServerSide" : true,
+			"pagingType" : "full",
+			"columns" : [{
+					"data" : "username",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "userid",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "status",
+					"sortable" : false,
+					"searchable" : false,
+					"render" : function (data, type, full) {
+						for (var i = 0; i < statusDict.length; i++) {
+							if (statusDict[i].id == data) {
+								return statusDict[i].text;
+							}
+						}
+						return "";
+					}
+				}, {
+					"data" : "usercasue",
+					"sortable" : false,
+					"searchable" : false,
+					"render" : function (data, type, full) {
+						for (var i = 0; i < casueDict.length; i++) {
+							if (casueDict[i].id == data) {
+								return casueDict[i].text;
+							}
+						}
+						return "";
+					}
+				}, {
+					"data" : "useremail",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "userwcat",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "usersina",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "usertelno",
+					"sortable" : false,
+					"searchable" : false
+				}, {
+					"data" : "usertype",
+					"sortable" : false,
+					"searchable" : false,
+					"render" : function (data, type, full) {
+						for (var i = 0; i < typeDict.length; i++) {
+							if (typeDict[i].id == data) {
+								return typeDict[i].text;
+							}
+						}
+						return "";
+					}
+				}, {
+					"data" : null,
+					"width" : "12%",
+					"sortable" : false,
+					"searchable" : false,
+					"render" : function (data, type, full) {
+						return "<a class='edit' href='javascript:;' data-src='" + data.userid +"," +data.username  + "'>编辑 </a>"
+						 + "<a class='deluser' href='javascript:;' data-src='" + data.userid +"," +data.username + "'>删除 </a>";
+					}
+				}
 			]
-			});
-			/*
-			var sendData = ["username","userid"];
-			table.on("click", $(".deluser"), function (e) {
-				//获取选中行数据
-				 e.preventDefault();
-		            var editObj = $(this);
-	            	var data = {};
-	   	           	var dataValue = editObj.attr("data-src").split(",");
-	   	           	for(var i = 0; i < sendData.length; i++){
-	   	           		Object.defineProperty(data, sendData[i], {
-	   	        		   value: dataValue[i]});
-	   	           	}
-	   	          
-	   	           	var nRowA = $(editObj.parents('tr')[0]).find("td");
-	   	           	handler(data);	
-					var redata={};
-						
-			       redata.userid=data.userid
-        	   bootbox.confirm("确定要注销此用户么?", function(result) { 
-	            	if(!result){
-	            		return;
-	            	}
-	            	Sunline.ajaxRouter("auth/allUser",redata,"DELETE",function(data,status){ 
-     					$('.msg', editform).text(data.retMsg);
-     					if(data.ret=="success"){
-     						bootbox.alert("注销成功");
-     						grid.submitFilter();
-     					}else{		
-     						bootbox.alert(data.msg);							
-     					}
-     					},function(){
-     						bootbox.alert("请求失败");	
-     					},"json");
-        	  
-        	  });
-			});*/
-			
+		}
+	});
+	/*******DATATABLE INIT END********/
+	/**SELECT2 BIND START**/
+	$("#q_usertype").select2({
+		data : typeDict,
+		allowClear : true,
+		placeholder : "请选择"
+	});
+	$("#a_status", ".modal").select2({
+		data : statusDict,
+		allowClear : true,
+		placeholder : "请选择"
+	}).trigger('change');
+	$("#a_usercasue").select2({
+		data : casueDict,
+		allowClear : true,
+		placeholder : "请选择"
+	});
+	$("#a_usertype").select2({
+		data : typeDict,
+		allowClear : true,
+		placeholder : "请选择"
+	});
+	/**SELECT2 BIND END**/
+	/**ADD USER FORM START**/
+	var editUrl;
+	var editform = $("#edit_form");
+	$("#add_new_user").click(function () {
+		$('input', editform).attr("readOnly", false);
+		validator.resetForm();
+		editerror.hide();
+		editsuccess.hide();
+		$('.msg', editform).text("");
+		$('.form-group').removeClass('has-error').removeClass("has-success");
+		$('input', editform).val("").trigger("change");
+		editUrl = "rest/user/adduser";
+		$("#editModal").modal('show');
+	});
+	/**ADD USER FORM END**/
+	/** validate start**/
+	var editerror = $('.alert-danger', editform);
+	var editsuccess = $('.alert-success', editform);
+	var validator = editform.validate({
+			errorElement : 'span',
+			errorClass : 'help-block help-block-error',
+			focusInvalid : false,
+			ignore : "",
+			rules : { //验证规则
+				a_username : {
+					required : true,
+					rangelength : [1, 19]
+				},
+				a_useremail : {
+					required : false,
+					rangelength : [5, 49]
+				},
+				a_usersina : {
+					required : false,
+					rangelength : [5, 19]
+				},
+				a_userwcat : {
+					required : false,
+					rangelength : [5, 19]
+				},
+				a_usertelno : {
+					required : true,
+					rangelength : [11, 19],
+					number : true
+				}
+			},
+			invalidHandler : function (event, validator) {
+				editsuccess.hide();
+				editerror.show();
+				
+			},
+			errorPlacement : function (error, element) {
+				element.parent().append(error);
+			},
+			highlight : function (element) {
+				$(element)
+				.closest('.form-group').removeClass("has-success").addClass('has-error');
+			},
+			unhighlight : function (element) {},
+			success : function (label, element) {
+				var icon = $(element).parent('.input-icon').children('i');
+				$(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+				icon.removeClass("fa-warning").addClass("fa-check");
+			},
+			submitHandler : function (form) {
+				/*
+				 * 提交数据,必须是json对象
+				 * 返回也必须是json对象
+				 */
+				var data = {};
+				$.each($("input", editform), function (i, n) {
+					data[n.name] = n.value;
+				});
+				Hello.ajaxHello(editUrl, data, "post", function (data, status) {
+					$('.msg', editform).text(data.msg);
+					if (data.ret == "success") {
+						$('.alert-success', editform).show();
+						$('.alert-danger', editform).hide();
+						$('#a_userid', editform).attr("readOnly", true);
+						$('#a_username', editform).attr("readOnly", true);
+					} else {
+						$('.alert-success', editform).hide();
+						$('.alert-danger', editform).show();
+					}
+				}, function () {
+					$('.msg', editform).text("网络异常!");
+					$('.alert-success', editform).hide();
+					$('.alert-danger', editform).show();
+				}, "json");
+			}
 		});
-		</script>
+	/**validate end**/
+	/**edit model start**/
+	//修改窗口
+	var toEditModal = function (nRowA) {
+		//赋值
+		$('#a_username').attr("readOnly", true);
+		$('#a_userid').attr("readOnly", true);
+		$('#a_username').val($(nRowA[0]).text());
+		$('#a_userid').val($(nRowA[1]).text());
+		$('#a_status').val($(nRowA[2]).text().substring($(nRowA[2]).text().indexOf("[") + 1, $(nRowA[2]).text().indexOf("]"))).trigger("change");
+		$('#a_usercasue').val($(nRowA[3]).text().substring($(nRowA[3]).text().indexOf("[") + 1, $(nRowA[3]).text().indexOf("]"))).trigger("change");
+		$('#a_useremail').val($(nRowA[4]).text());
+		$('#a_userwcat').val($(nRowA[5]).text());
+		$('#a_usersina').val($(nRowA[6]).text());
+		$('#a_usertelno').val($(nRowA[7]).text());
+		$('#a_usertype').val($(nRowA[8]).text().substring($(nRowA[8]).text().indexOf("[") + 1, $(nRowA[8]).text().indexOf("]"))).trigger("change");
+		editUrl = "rest/user/upuser";
+		$("#editModal").modal('show');
+	};
+	grid.bindTableEdit(sendData, toEditModal);
+	/**edit model end**/
+	/***delete event start**/
+	grid.addBindEvent(".deluser", "click", sendData, function (data) {
+		var reqdata = {};
+		reqdata.userid = data.userid;
+		reqdata.username = data.username;
+			bootbox.confirm("确定要删除此用户么?", function (result) {
+				if (!result) {
+					return;
+				}
+				Hello.ajaxHello("user/delUser", reqdata, "POST", function (data, status) {
+					$('.msg', editform).text(data.retMsg);
+					if (data.ret == "success") {
+						bootbox.alert("注销成功");
+						grid.submitFilter();
+					} else {
+						bootbox.alert(data.msg);
+					}
+				}, function () {
+					bootbox.alert("请求失败");
+				}, "json");
+			});
+	});
+	/***delete event end**/
+});
+</script>
 </head>
 <body>
  <div class="col-md-12">
 	<div class="portlet light">
+		<!-- TABLE TITLE START -->
 		<div class="portlet-title">
 			<div class="caption">
 				<i class="fa fa-user font-green-sharp"></i> <span
 					class="caption-subject font-green-sharp bold uppercase">用户管理</span>
-				<span class="caption-helper">用户</span>
+				<span class="caption-helper">User Management</span>
 			</div>
 		</div>	
+		<!-- TABLE TITLE END -->
+		<!-- TABLE BODY START -->
 		<div class="portlet-body">
 			<div class="table-container">
 				<div class="table-actions-wrapper">
@@ -207,18 +396,20 @@
 						</tr>
 						<tr role="row" class="filter">
 							<td><input type="text"
+								class="form-control form-filter input-sm" style="width:80%" name="q_username"
+								id="q_username" /></td>
+							<td><input type="text"
 								class="form-control form-filter input-sm" style="width:80%" name="q_userid"
 								id="q_userid" /></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td><input type="text"
-								class="form-control form-filter input-sm" style="width:80%" name="q_userna"
-								id="q_userna" /></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+								class="form-control form-filter input-sm" style="width:80%" name="q_usertype"
+								id="q_usertype" /></td></td>
 							<td>
 								<button class="btn btn-sm yellow filter-submit margin-bottom">
 									<i class="fa fa-search"></i> 查询
@@ -234,10 +425,90 @@
 				</table>
 			</div>
 		</div>
+		<!-- TABLE BODY END -->		
+		<!-- EDIT MODAL START -->
+		<div id="editModal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+			<div class="modal-header">
+				<button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">用户信息</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<form class="form-horizontal" role="form" id="edit_form" action="" method="post">
+							<div class="form-body">
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									输入有误，请检查下面表单！返回信息 ：<span class="msg"></span>
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									提交表单正确！后台信息 ： <span class="msg"></span>
+								</div>
+								<input type="hidden" id="a_userid" name="a_userid" maxlength="19" placeholder="隐藏用户ID">
+								<div class="form-group">
+									<label class="col-md-3 control-label">用户名</label>
+									<div class="col-md-9">
+										<input type="text" id="a_username" name="a_username" class="form-control input-inline input-medium" maxlength="19" placeholder="用户名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">状态</label>
+									<div class="col-md-9">
+										<input type="text" id="a_status" name="a_status"
+											class="form-control input-inline input-medium"  placeholder="状态"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">注册方式</label>
+									<div class="col-md-9">
+										<input type="text" id="a_usercasue" name="a_usercasue"
+											class="form-control input-inline input-medium"  placeholder="注册方式"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">邮箱</label>
+									<div class="col-md-9">
+										<input type="text" id="a_useremail" name="a_useremail" class="form-control input-inline input-medium" maxlength="49" placeholder="邮箱">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">微信账号</label>
+									<div class="col-md-9">
+										<input type="text" id="a_userwcat" name="a_userwcat" class="form-control input-inline input-medium" maxlength="49" placeholder="微信账号">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">微博账号</label>
+									<div class="col-md-9">
+										<input type="text" id="a_usersina" name="a_usersina" class="form-control input-inline input-medium" maxlength="49" placeholder="微博账号">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">电话</label>
+									<div class="col-md-9">
+										<input type="text" id="a_usertelno" name="a_usertelno" class="form-control input-inline input-medium" maxlength="15" placeholder="电话">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">用户类型</label>
+									<div class="col-md-9">
+										<input type="text" id="a_usertype" name="a_usertype"
+											class="form-control input-inline input-medium" placeholder="用户类型" ></input>
+									</div>
+								</div>
+							<div class="modal-footer">
+								<button type="button" data-dismiss="modal"
+									class="btn btn-default closeModal">关闭</button>
+								<button type="submit" class="btn blue" id="sub_btn">保存</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- EDIT MODAL END -->		
 	</div>
 </div>
-
-
-
 </body>
 </html>

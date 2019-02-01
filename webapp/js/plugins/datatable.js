@@ -52,8 +52,8 @@ var Datatable = function () {
 							"metronicAjaxRequestGeneralError" : "不能完成请求，请检查网络链接",
 
 							// data tables spesific
-							"lengthMenu" : "<span class='seperator'>|</span>显示 _MENU_ 条记录",
-							"info" : "<span class='seperator'>|</span>共 _TOTAL_ 条记录  <<当前第_PAGE_ 页,共 _PAGES_页>>",
+							"lengthMenu" : "<span class='seperator'>|</span>显示_MENU_ 条记录",
+							"info" : "<span class='seperator'>|</span>共 <b>_TOTAL_</b> 条记录  <<当前第<b>_PAGE_</b> 页,共<b> _PAGES_</b>页>>",
 							"infoEmpty" : "没有数据可显示",
 							"emptyTable" : "没有可用记录",
 							"zeroRecords" : "抱歉， 没有找到",

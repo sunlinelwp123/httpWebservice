@@ -38,6 +38,7 @@ struct User{
 	/*检查密码暂无加密 TODO 加密?ARS||MD5*/
 	virtual bool checkUserPassword(char *password);
 	virtual bool initUserUseUserNameFromDB(Connection_T conn);/* 通过数据库连接池初始化user对象*/
+ 	bool userNameExist(Connection_T conn);
 	virtual bool delUser(Connection_T conn);/*shan chu yonghu*/
 	virtual bool updateUser(Connection_T conn);/*update*/
 	virtual bool insertUser(Connection_T conn);/*insert */

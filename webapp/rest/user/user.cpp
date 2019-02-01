@@ -13,7 +13,7 @@ User::User(const char *user_name,const char *org_id/*TODO org_id*/){
 	setUserName(user_name);
 }
 /*无参构造*/
-User::User(){}
+User::User(){setOrgId("1001");}
 /*深拷贝构造函数*/
 User& User::operator = (const User& that){
 	/*TODO copy user 这里已经声明了新的内存空间 没有指针类型所以直接copy数据*/
@@ -158,7 +158,6 @@ User::~User(void){
  */
 bool User::delUser(Connection_T conn){
 	if(userName == NULL)return false;
-	clog<< "userName"<<userName<<endl;
 	try{
 		Connection_execute(conn, "update WS_SYS_USER set status = '0' where user_name = '%s'", userName);
 		/*Connection_execute(conn, "delete from ws_sys_user where user_name = '%s'", userName); 真删除 */
@@ -177,12 +176,13 @@ bool User::delUser(Connection_T conn){
 bool User::updateUser(Connection_T conn){
 	if(userName == NULL)return false;
 	try{
+		char s[2];
+                sprintf(s,"%c\0", status);
 		Connection_execute(conn, 
-			"update WS_SYS_USER set status = '%s', user_email = '%s', user_wcat='%s', user_sina = '%s', user_password = '%s',user_telno = '%s',user_type = '%s' where user_name = '%s'",
-				status, userEmail, userWcat, userSina, userPassword, userTelno, userType, userName);
+			"update WS_SYS_USER set status = '%s', user_casue ='%s', user_email = '%s', user_wcat='%s', user_sina = '%s',user_telno = '%s',user_type = '%s' where user_name = '%s'",
+				s, userCasue, userEmail, userWcat, userSina, userTelno, userType, userName);
 		 Connection_commit(conn);
 	}catch(int ex){
-		printf("update error ,ex:%d\n", ex);
 		return false;
 	}
 
@@ -194,6 +194,7 @@ bool User::updateUser(Connection_T conn){
  */
 bool User::insertUser(Connection_T conn){
 	if(userName == NULL)return false;
+	if(userPassword == NULL)userPassword = "123456";//TODO 
 	try{
 		Connection_execute(conn,
 #if IS_ORACLE 	
@@ -210,7 +211,6 @@ bool User::insertUser(Connection_T conn){
 			       	"('%s', '0001', (select max(user_id)+1 from WS_SYS_USER a), '%c', '%s', '%s', '%s', '%s', '%s', '%s', '%s') ",
 #endif	
       				userName, status, userCasue, userEmail, userWcat, userSina, userPassword, userTelno, userType);
-		printf("%s :insert end\n", userName);
 		Connection_commit(conn);
 	}catch(int ex){
 		printf("insert error ,ex:%d\n", ex);
@@ -262,6 +262,27 @@ bool User::initUserUseUserNameFromDB(Connection_T conn){
 	return true;
 }
 
+bool User::userNameExist(Connection_T conn){
+	if(userName == NULL)return false;
+	ResultSet_T result = Connection_executeQuery(conn, "select count(1) from WS_SYS_USER where user_name ='%s'", userName);
+	if(ResultSet_isnull(result, 1)){
+		/*未找到数据 关闭连接 关闭连接池 释放连接池*/
+		Connection_close(conn);
+		return false;
+	}
+	clog << "aaaaaaaaaa"<<endl;
+	if(ResultSet_next(result)&(ResultSet_getInt(result, 1) > 0)) {
+		Connection_close(conn);
+		 return true;
+	}else{
+		Connection_close(conn);
+		return false;
+	}
+	return false;
+}
+/*
+ *
+ */
 bool getUsersForCondition(User *user, Connection_T conn,const char *condition, int page, int size, int *p_total, int *p_totalPage, int *p_count){
 	
         ResultSet_T result;

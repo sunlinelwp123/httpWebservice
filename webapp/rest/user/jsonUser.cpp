@@ -5,6 +5,7 @@ JsonUser::JsonUser(const char *username){
 	setUserName(username);
 }
 JsonUser::JsonUser(){
+	setOrgId("1001");
 }
 
 bool JsonUser::userParseJson(cJSON * userJson){
@@ -41,6 +42,7 @@ bool JsonUser::jsonStringParseUser(const char *jsonStr,cJSON * userJson){
 		try{
 			username = cJSON_GetObjectItemCaseSensitive(userJson, "username");
 			if(username){setUserName(cJSON_GetStringValue(username));}else{return false;}
+		
 			orgid = cJSON_GetObjectItemCaseSensitive(userJson, "orgid");
 			if(orgid)setOrgId(cJSON_GetStringValue(orgid));
 			status = cJSON_GetObjectItemCaseSensitive(userJson, "status");
@@ -58,8 +60,51 @@ bool JsonUser::jsonStringParseUser(const char *jsonStr,cJSON * userJson){
 			usercasue = cJSON_GetObjectItemCaseSensitive(userJson, "usercasue");
 			if(usercasue)strcpy(this->userCasue, cJSON_GetStringValue(usercasue));
 			userpassword = cJSON_GetObjectItemCaseSensitive(userJson, "userpassword");
-			if(userpassword)strcpy(this->userPassword, cJSON_GetStringValue(userpassword));
+			if(strlen(userpassword->valuestring)>5&&strlen(userpassword->valuestring)<= 20)strcpy(this->userPassword, cJSON_GetStringValue(userpassword));
 			userid = cJSON_GetObjectItemCaseSensitive(userJson, "userid");
+			if(strlen(userid->valuestring)>3)setUserId(cJSON_GetStringValue(userid));
+		}catch(int ex){
+			clog<< "usercpy error"<<endl;
+			return false;
+		}
+		return true;
+	}
+bool JsonUser::jsonStringParseUserA(const char *jsonStr,cJSON * userJson){
+		userJson = cJSON_Parse(jsonStr);
+		cJSON *username = NULL;
+		cJSON *userid = NULL;
+		cJSON *orgid = NULL;
+		cJSON *status = NULL;
+		cJSON *useremail = NULL;
+		cJSON *userwcat = NULL;
+		cJSON *usersina = NULL;
+		cJSON *usertelno = NULL;
+		cJSON *usertype = NULL;
+		cJSON *usercasue = NULL;
+		cJSON *userpassword = NULL;
+		cleanUser();
+		try{
+			username = cJSON_GetObjectItemCaseSensitive(userJson, "a_username");
+			if(username){setUserName(cJSON_GetStringValue(username));}else{return false;}
+			orgid = cJSON_GetObjectItemCaseSensitive(userJson, "a_orgid");
+			if(orgid)setOrgId(cJSON_GetStringValue(orgid));
+			status = cJSON_GetObjectItemCaseSensitive(userJson, "a_status");
+			if(status)setStatus(cJSON_GetStringValue(status));
+			useremail = cJSON_GetObjectItemCaseSensitive(userJson, "a_useremail");
+			if(useremail)strcpy(this->userEmail, cJSON_GetStringValue(useremail));
+			userwcat = cJSON_GetObjectItemCaseSensitive(userJson, "a_userwcat");
+			if(userwcat)strcpy(this->userWcat,cJSON_GetStringValue(userwcat));
+			usersina = cJSON_GetObjectItemCaseSensitive(userJson, "a_usersina");
+			if(usersina)strcpy(this->userSina, cJSON_GetStringValue(usersina));
+			usertelno = cJSON_GetObjectItemCaseSensitive(userJson, "a_usertelno");
+			if(usertelno)strcpy(this->userTelno, cJSON_GetStringValue(usertelno));
+			usertype = cJSON_GetObjectItemCaseSensitive(userJson, "a_usertype");
+			if(usertype)strcpy(this->userType, cJSON_GetStringValue(usertype));
+			usercasue = cJSON_GetObjectItemCaseSensitive(userJson, "a_usercasue");
+			if(usercasue)strcpy(this->userCasue, cJSON_GetStringValue(usercasue));
+			userpassword = cJSON_GetObjectItemCaseSensitive(userJson, "a_userpassword");
+			if(userpassword)strcpy(this->userPassword, cJSON_GetStringValue(userpassword));
+			userid = cJSON_GetObjectItemCaseSensitive(userJson, "a_userid");
 			if(userid)setUserId(cJSON_GetStringValue(userid));
 		}catch(int ex){
 			clog<< "usercpy error"<<endl;

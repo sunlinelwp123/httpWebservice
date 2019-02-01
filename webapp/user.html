@@ -2,8 +2,8 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<meta content="always" name="referrer">
     <meta name="theme-color" content="#2932e1">
+	<link rel="icon" href="http://www.quark.com/favicon.ico" type="image/x-icon" />
 		<!-- BEGIN THEME CSS -->
 	<link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css"	rel="stylesheet" type="text/css" />
 	<link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -36,29 +36,7 @@
 	<script src="./js/plugins/select2/dist/js/select2.full.js" type="text/javascript" ></script>
 	<script src="./js/plugins/hello.js" type="text/javascript"></script>
 		<!-- END SCRIPT -->
-<style>
-	.select2-drop {
-		z-index: 10050 !important;
-	} 
-	.select2-search-choice-close {
-		margin-top: 0 !important;
-		right: 2px !important;
-		min-height: 10px;
-	}	 
-	.select2-search-choice-close:before {
-		color: black !important;
-	}
-	/*防止select2不会自动失去焦点*/
-	.select2-container {
-		z-index: 16000 !important;
-	}	 
-	.select2-drop-mask {
-		z-index: 15990 !important;
-	}
-	.select2-drop-active {
-		z-index: 15995 !important;
-	}		
-</style>
+
 <script>	
 $(document).ready(function () {
 	/*******DATATABLE INIT START********/
@@ -97,7 +75,7 @@ $(document).ready(function () {
 			id : "pho"
 		}
 	];
-	var typeDict = [{
+	var typeDict = [ {
 			text : "学生[s]",
 			id : "s"
 		}, {
@@ -185,7 +163,7 @@ $(document).ready(function () {
 					}
 				}, {
 					"data" : null,
-					"width" : "12%",
+					"width" : "8%",
 					"sortable" : false,
 					"searchable" : false,
 					"render" : function (data, type, full) {
@@ -207,7 +185,7 @@ $(document).ready(function () {
 		data : statusDict,
 		allowClear : true,
 		placeholder : "请选择"
-	}).trigger('change');
+	});
 	$("#a_usercasue").select2({
 		data : casueDict,
 		allowClear : true,
@@ -229,8 +207,8 @@ $(document).ready(function () {
 		editsuccess.hide();
 		$('.msg', editform).text("");
 		$('.form-group').removeClass('has-error').removeClass("has-success");
-		$('input', editform).val("").trigger("change");
-		editUrl = "rest/user/adduser";
+		$('input,select', editform).val(null).trigger("change");
+		editUrl = "user/adduser";
 		$("#editModal").modal('show');
 	});
 	/**ADD USER FORM END**/
@@ -274,8 +252,7 @@ $(document).ready(function () {
 				element.parent().append(error);
 			},
 			highlight : function (element) {
-				$(element)
-				.closest('.form-group').removeClass("has-success").addClass('has-error');
+				$(element).closest('.form-group').removeClass("has-success").addClass('has-error');
 			},
 			unhighlight : function (element) {},
 			success : function (label, element) {
@@ -289,7 +266,7 @@ $(document).ready(function () {
 				 * 返回也必须是json对象
 				 */
 				var data = {};
-				$.each($("input", editform), function (i, n) {
+				$.each($("input,select", editform), function (i, n) {
 					data[n.name] = n.value;
 				});
 				Hello.ajaxHello(editUrl, data, "post", function (data, status) {
@@ -299,6 +276,7 @@ $(document).ready(function () {
 						$('.alert-danger', editform).hide();
 						$('#a_userid', editform).attr("readOnly", true);
 						$('#a_username', editform).attr("readOnly", true);
+						grid.submitFilter();
 					} else {
 						$('.alert-success', editform).hide();
 						$('.alert-danger', editform).show();
@@ -315,19 +293,22 @@ $(document).ready(function () {
 	//修改窗口
 	var toEditModal = function (nRowA) {
 		//赋值
+		editUrl = "user/upuser";
 		$('#a_username').attr("readOnly", true);
 		$('#a_userid').attr("readOnly", true);
+		$('.alert-success', editform).hide();
+		$('.alert-danger', editform).hide();
+		$("#editModal").modal('show');
 		$('#a_username').val($(nRowA[0]).text());
 		$('#a_userid').val($(nRowA[1]).text());
-		$('#a_status').val($(nRowA[2]).text().substring($(nRowA[2]).text().indexOf("[") + 1, $(nRowA[2]).text().indexOf("]"))).trigger("change");
-		$('#a_usercasue').val($(nRowA[3]).text().substring($(nRowA[3]).text().indexOf("[") + 1, $(nRowA[3]).text().indexOf("]"))).trigger("change");
+		$('#a_status').val($(nRowA[2]).text().substring($(nRowA[2]).text().indexOf("[") + 1, $(nRowA[2]).text().indexOf("]"))).trigger("change.select2");
+		$('#a_usercasue').val($(nRowA[3]).text().substring($(nRowA[3]).text().indexOf("[") + 1, $(nRowA[3]).text().indexOf("]"))).trigger("change.select2");
 		$('#a_useremail').val($(nRowA[4]).text());
 		$('#a_userwcat').val($(nRowA[5]).text());
 		$('#a_usersina').val($(nRowA[6]).text());
-		$('#a_usertelno').val($(nRowA[7]).text());
-		$('#a_usertype').val($(nRowA[8]).text().substring($(nRowA[8]).text().indexOf("[") + 1, $(nRowA[8]).text().indexOf("]"))).trigger("change");
-		editUrl = "rest/user/upuser";
-		$("#editModal").modal('show');
+		$('#a_usertelno').val($(nRowA[7]).text());		
+		$('#a_usertype').val($(nRowA[8]).text().substring($(nRowA[8]).text().indexOf("[") + 1, $(nRowA[8]).text().indexOf("]"))).trigger("change.select2");		
+		
 	};
 	grid.bindTableEdit(sendData, toEditModal);
 	/**edit model end**/
@@ -385,14 +366,14 @@ $(document).ready(function () {
 						<tr role="row" class="heading">
 							<th width="10%">用户名</th>
 							<th width="10%">用户ID</th>
-							<th width="4%">状态</th>
+							<th width="8%">状态</th>
 							<th width="8%">注册方式</th>
 							<th width="10%">邮箱</th>
 							<th width="10%">微信</th>
 							<th width="10%">微博账号</th>
 							<th width="10%">电话</th>
 							<th width="6%">用户类型</th>
-							<th width="12%">操作</th>
+							<th width="8%">操作</th>
 						</tr>
 						<tr role="row" class="filter">
 							<td><input type="text"
@@ -407,8 +388,8 @@ $(document).ready(function () {
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><input type="text"
-								class="form-control form-filter input-sm" style="width:80%" name="q_usertype"
+							<td><select type="text"
+								class="form-control form-filter input-sm js-example-theme-single" style="width:80%" name="q_usertype"
 								id="q_usertype" /></td></td>
 							<td>
 								<button class="btn btn-sm yellow filter-submit margin-bottom">
@@ -427,6 +408,31 @@ $(document).ready(function () {
 		</div>
 		<!-- TABLE BODY END -->		
 		<!-- EDIT MODAL START -->
+		<style>
+//select2 select2-container select2-container--default select2-container--below
+//		  select2-container select2-container--default select2-container--open
+	.select2-drop {
+		z-index: 10050 !important;
+	} 
+	.select2-search-choice-close {
+		margin-top: 0 !important;
+		right: 2px !important;
+		min-height: 10px;
+	}	 
+	.select2-search-choice-close:before {
+		color: black !important;
+	}
+	/*防止select2不会自动失去焦点*/
+	.select2-container {
+		z-index: 16000 !important;
+	}	 
+	.select2-drop-mask {
+		z-index: 15990 !important;
+	}
+	.select2-drop-active {
+		z-index: 15995 !important;
+	}		
+</style>
 		<div id="editModal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
 			<div class="modal-header">
 				<button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true"></button>
@@ -455,15 +461,15 @@ $(document).ready(function () {
 								<div class="form-group">
 									<label class="col-md-3 control-label">状态</label>
 									<div class="col-md-9">
-										<input type="text" id="a_status" name="a_status"
-											class="form-control input-inline input-medium"  placeholder="状态"></input>
+										<select type="hidden" id="a_status" name="a_status"
+											class="form-control input-inline input-medium"  placeholder="状态"></select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label">注册方式</label>
 									<div class="col-md-9">
-										<input type="text" id="a_usercasue" name="a_usercasue"
-											class="form-control input-inline input-medium"  placeholder="注册方式"></input>
+										<select type="hidden" id="a_usercasue" name="a_usercasue"
+											class="form-control input-inline input-medium"  placeholder="注册方式"></select>
 									</div>
 								</div>
 								<div class="form-group">
@@ -493,8 +499,8 @@ $(document).ready(function () {
 								<div class="form-group">
 									<label class="col-md-3 control-label">用户类型</label>
 									<div class="col-md-9">
-										<input type="text" id="a_usertype" name="a_usertype"
-											class="form-control input-inline input-medium" placeholder="用户类型" ></input>
+										<select type="hidden" id="a_usertype" name="a_usertype"
+											class="form-control input-inline input-medium" placeholder="用户类型" ></select>
 									</div>
 								</div>
 							<div class="modal-footer">

@@ -7,6 +7,7 @@ struct JsonUser : public User{
 	JsonUser(const char *);
 	bool userParseJson(cJSON *);
 	bool jsonStringParseUser(const char *jsonStr,cJSON *);
+	bool jsonStringParseUserA(const char *jsonStr,cJSON *);
 	void printUser(cJSON *);
 	~JsonUser();
 };

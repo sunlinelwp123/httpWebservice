@@ -49,8 +49,8 @@ void eventAdd(int, int, ioEvent_s *);
 /*删除epoll事件*/
 void eventDel(int, ioEvent_s *);
 /*将socket 绑定到epoll事件 有client 接入则触发回调函数e_accept*/
-int s_bind(int, int, uint16_t, int);
-int s_listen(int, int, uint16_t, int, int);
+int s_bind(int, int, uint16_t);
+int s_listen(int, int, uint16_t, int);
 int n_accept(int);
 int h_accept(int);
 /*accept  添加 epoll 事件监控 下一步事件是 http_handle*/
@@ -62,8 +62,8 @@ void recvData(int, int, void *);
 void sendData(int, int, void *);
 //void thread_pool(int, int, void *);
 /* 对http请求的处理 类似Filter过滤器 */
-void http_handle(int,int,void *);
-void *thread_handle(void *);
+void http_handle(int/*,int,void * */);
+void thread_handle(int, int, void *);
 void serve_file(int, const char *);
 void cat(int, FILE *);
 int read_line(int, char *, int);
@@ -72,7 +72,7 @@ void unknowmethod(int);
 void not_found(int);
 void cannot_execute(int);
 /*使用cgi通用网关接口调用服务类似interceptor 拦截器*/
-void execute_cgi(int, const char *, const char *, const char *,ioEvent_s *);
+void execute_cgi(int, const char *, const char *, const char *);
 void bad_request(int);
 #endif
 

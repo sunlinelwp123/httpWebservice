@@ -194,7 +194,7 @@ bool User::updateUser(Connection_T conn){
  */
 bool User::insertUser(Connection_T conn){
 	if(userName == NULL)return false;
-	if(userPassword == NULL)userPassword = "123456";//TODO 
+	if(userPassword == NULL)strcat(userPassword ,"123456");//TODO 
 	try{
 		Connection_execute(conn,
 #if IS_ORACLE 	
@@ -264,6 +264,7 @@ bool User::initUserUseUserNameFromDB(Connection_T conn){
 
 bool User::userNameExist(Connection_T conn){
 	if(userName == NULL)return false;
+	printf("username:%s",userName);
 	ResultSet_T result = Connection_executeQuery(conn, "select count(1) from WS_SYS_USER where user_name ='%s'", userName);
 	if(ResultSet_isnull(result, 1)){
 		/*未找到数据 关闭连接 关闭连接池 释放连接池*/

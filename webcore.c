@@ -9,7 +9,7 @@
 int g_epollFd;
 ioEvent_s g_Events[MAX_EVENTS+1]; 
 
-void http_handle(int client, int events, void *arg){
+void http_handle(int client/*, int events, void *arg*/){
 	char buf[1024];	//读请求第一行数组
 	char method[255];//请求方法
 	char url[255];//url 字符数组
@@ -17,7 +17,7 @@ void http_handle(int client, int events, void *arg){
 	struct stat st;//获取静态文件
 	char path[512];
 	int cgi = 0;
-	ioEvent_s *ev = (ioEvent_s*)arg;  
+	//ioEvent_s *ev = (ioEvent_s*)arg;  
 	//printf("client success %d\n",client);
 	//获取请求第一行
 	int _line = read_line(client, buf, sizeof(buf));
@@ -98,7 +98,7 @@ void http_handle(int client, int events, void *arg){
 		if (!cgi)
 			serve_file(client, path);
 		else
-			execute_cgi(client, path, method, p_query, ev);
+			execute_cgi(client, path, method, p_query);
 	}
 #endif
 	close(client);
@@ -106,7 +106,7 @@ void http_handle(int client, int events, void *arg){
 
 }
 /* 执行调用服务实现 */
-void execute_cgi(int client, const char *path, const char *method, const char *query_string, ioEvent_s* cev){
+void execute_cgi(int client, const char *path, const char *method, const char *query_string){
 	char buf[1024];
 	int cgi_output[2];
 	int cgi_input[2];
@@ -234,7 +234,7 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 		sprintf(port_env,"SERVER_PORT",SERVER_PORT);
 		putenv(port_env);
 		//printf("cgi-end\n");
-		/*用 execl 运行 cgi 程序*/
+		/*用 execl 运行 cgi 通用网管接口 程序*/
 		execl(path, path, NULL);
 		exit(0);
 	} else {    /* parent */
@@ -262,12 +262,8 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 		/*close(cgi_input[1]);*/
 		/*等待子进程*/
 		waitpid(pid, &status, 0);
-		//printf("close epollfd %d ******\n", g_Events[i]);
 		eventDel(g_epollFd, &g_Events[i]);
-		//printf("close epollfd %d ******\n", g_Events[j]);
 		eventDel(g_epollFd, &g_Events[j]);
-		//printf("close epollfd %d ******\n", *cev);
-		eventDel(g_epollFd, cev);
 	}
 }
 
@@ -440,11 +436,10 @@ int main(int argc, char *argv[]){
 	unsigned int port;
 	if (argc > 1)port = atoi(argv[1]);
 	else port = SERVER_PORT;
-	pthread_t newthread;
 	g_epollFd = epoll_create(MAX_EVENTS);
 	if(g_epollFd <= 0) printf("create epoll failed.%d\n", g_epollFd);
 	/*t_net 封装socket创建*/
-	server_socket = s_listen(AF_INET, SOCK_STREAM, SERVER_PORT, BACKLOG, g_epollFd);
+	server_socket = s_listen(AF_INET, SOCK_STREAM, SERVER_PORT, BACKLOG);
 	printf("HttpServer running on port %d\n", port);//t_param.h  8080
 	struct epoll_event events[MAX_EVENTS];
 	int checkPos = 0;
@@ -475,9 +470,7 @@ int main(int argc, char *argv[]){
 		}
 		for(i = 0; i < fds; i++){
 			ioEvent_s *ev = (ioEvent_s*)events[i].data.ptr;
-			if((events[i].events&EPOLLIN)&&(ev->events&EPOLLIN)){ //TODO newthread read event
-				//pthread_t newthread;
-		                //pthread_create(&newthread, NULL, &thread_handle, events[i].data.ptr);//创建新线程
+			if((events[i].events&EPOLLIN)&&(ev->events&EPOLLIN)){ // read event
 				ev->call_back(ev->fd, events[i].events, ev->arg);
 			}
 			if((events[i].events&EPOLLOUT)&&(ev->events&EPOLLOUT)){ // write event

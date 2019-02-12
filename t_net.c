@@ -47,7 +47,7 @@ void eventDel(int epollFd, ioEvent_s *ev){
 	epoll_ctl(epollFd, EPOLL_CTL_DEL, ev->fd, &epv);  
 }  
 
-int s_bind(int domain, int type, uint16_t port, int epollFd){
+int s_bind(int domain, int type, uint16_t port){
 	SA4 serv;
 	/*创建socket,返回文件描述符sfd*/
 	int sfd=socket(domain,type,0);
@@ -72,7 +72,7 @@ int s_bind(int domain, int type, uint16_t port, int epollFd){
 	/* 设置事件到事件数组中 */
 	eventSet(&g_Events[MAX_EVENTS], sfd, &e_accept, &g_Events[MAX_EVENTS]);  
 	/* add listen socket  */
-	eventAdd(epollFd, EPOLLIN, &g_Events[MAX_EVENTS]);  
+	eventAdd(g_epollFd, EPOLLIN, &g_Events[MAX_EVENTS]);  
 
 	/*初始化本地ip地址和端口号*/
 	serv.sin_family=domain;
@@ -84,8 +84,8 @@ int s_bind(int domain, int type, uint16_t port, int epollFd){
 
 	return sfd;
 }
-int s_listen(int domain,int type,uint16_t port,int backlog, int epollFd){
-	int fd=s_bind(domain,type,port,epollFd);
+int s_listen(int domain,int type,uint16_t port,int backlog){
+	int fd=s_bind(domain,type,port);
 	if(fd==-1)return -1;
 	listen(fd,backlog);
 	return fd;
@@ -109,21 +109,17 @@ int h_accept(int fd){
 	printf("%s\n",inet_ntop(AF_INET,&cli.sin_addr,IP,32));
 	return cfd;
 }
-/*accept  添加 epoll 事件监控 下一步事件是 http_handle*/
+/*accept  添加 epoll 事件监控 下一步事件是 thread_handle*/
 void e_accept(int fd, int events, void *arg){  
 	SA4 sin;  
 	socklen_t len = sizeof(SA4);  
 	int nfd;  
-	//pthread_t newthread;
-	// accept  
 	if((nfd = accept(fd, ( SA*)&sin, &len)) == -1){  
 		if(errno != EAGAIN && errno != EINTR){  
 		}
 		printf("%s: accept, %d", __func__, errno);  
 		return;  
 	}
-        //int p = pthread_create(&newthread, NULL, e_clientSet, nfd);//创建新线程
-	//if(p != 0)perror("thread create error");
 	e_clientSet(nfd);
 }
 
@@ -145,15 +141,20 @@ void e_clientSet(int nfd){
 			printf("%s: fcntl nonblocking failed:%d", __func__, iret);
 			break;
 		}
-		// add a read event for receive data  
-		eventSet(&g_Events[i], nfd, http_handle, &g_Events[i]);  
+		// add a read event for receive data 将请求文件描述符放入epoll监控中 
+		eventSet(&g_Events[i], nfd, thread_handle, &g_Events[i]);  
 		eventAdd(g_epollFd, EPOLLIN, &g_Events[i]);  
 	}while(0);  
 	printf("new conn[time:%d], pos[%d]\n", g_Events[i].last_active, i);  
 }
-void *thread_handle(void *ev){
-	ioEvent_s *e = (ioEvent_s *)ev;
-	e->call_back(e->fd, e->events, e->arg);
+void thread_handle(int fd, int events, void *arg){
+	ioEvent_s *e = (ioEvent_s *)arg;
+	//e->call_back(e->fd, e->events, e->arg);
+	//int nfd = e->fd;
+	pthread_t newthread;
+        int p = pthread_create(&newthread, NULL, http_handle, &fd);//创建新线程
+	if(p != 0)perror("thread create error");
+	eventDel(g_epollFd, e);
 }
 
 // receive data  

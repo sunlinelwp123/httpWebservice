@@ -65,11 +65,14 @@ int main(){
 		}
 	}
 	if(cJSON_HasObjectItem(input_json ,"q_usertype")){
-		q_usertype=cJSON_GetObjectItemCaseSensitive(input_json, "q_usertype")->valuestring;
-		if(strlen(q_usertype) >= 1){
-			condition = strcat(condition, " and user_type = '");
-			condition = strcat(condition, q_usertype);
-			condition = strcat(condition ,"' ");
+		cJSON *c_usertype = cJSON_GetObjectItemCaseSensitive(input_json, "q_usertype");
+		if(!cJSON_IsNull(c_usertype)){
+			q_usertype = c_usertype->valuestring;
+			if(strlen(q_usertype) >= 1){
+				condition = strcat(condition, " and user_type = '");
+				condition = strcat(condition, q_usertype);
+				condition = strcat(condition ,"' ");
+			}
 		}
 	}
 	condition = strcat(condition, " and status <> '0' order by user_id asc ");

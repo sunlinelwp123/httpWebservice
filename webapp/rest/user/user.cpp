@@ -185,6 +185,7 @@ bool User::updateUser(Connection_T conn){
 	}catch(int ex){
 		return false;
 	}
+	return true;
 
 }
 /*
@@ -216,6 +217,7 @@ bool User::insertUser(Connection_T conn){
 		printf("insert error ,ex:%d\n", ex);
 		return false;
 	}
+	return true;
 }
 
 /*
@@ -271,7 +273,6 @@ bool User::userNameExist(Connection_T conn){
 		Connection_close(conn);
 		return false;
 	}
-	clog << "aaaaaaaaaa"<<endl;
 	if(ResultSet_next(result)&(ResultSet_getInt(result, 1) > 0)) {
 		Connection_close(conn);
 		 return true;

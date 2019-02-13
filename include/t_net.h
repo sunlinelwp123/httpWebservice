@@ -54,7 +54,7 @@ int s_listen(int, int, uint16_t, int);
 int n_accept(int);
 int h_accept(int);
 /*accept  添加 epoll 事件监控 下一步事件是 http_handle*/
-void e_accept(int, int, void *);
+void e_accept(int);
 void e_clientSet(int);
 
 /*接受和返回数据*/

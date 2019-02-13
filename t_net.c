@@ -67,12 +67,12 @@ int s_bind(int domain, int type, uint16_t port){
 	 *F_SETLKW：给文件加上进程锁，如果此文件之前已经被加了锁，则一直等待锁被释放。
 	 * @param arg 操作参数
 	 */
-	fcntl(sfd, F_SETFL, O_NONBLOCK);/* set non-blocking */
+	//fcntl(sfd, F_SETFL, O_NONBLOCK);/* set non-blocking */
 	/*fcntl(sfd, F_SETFL, ~O_NONBLOCK);*/ /*set blocking */
 	/* 设置事件到事件数组中 */
-	eventSet(&g_Events[MAX_EVENTS], sfd, &e_accept, &g_Events[MAX_EVENTS]);  
+	//eventSet(&g_Events[MAX_EVENTS], sfd, &e_accept, &g_Events[MAX_EVENTS]);  
 	/* add listen socket  */
-	eventAdd(g_epollFd, EPOLLIN, &g_Events[MAX_EVENTS]);  
+	//eventAdd(g_epollFd, EPOLLIN, &g_Events[MAX_EVENTS]);  
 
 	/*初始化本地ip地址和端口号*/
 	serv.sin_family=domain;
@@ -110,7 +110,7 @@ int h_accept(int fd){
 	return cfd;
 }
 /*accept  添加 epoll 事件监控 下一步事件是 thread_handle*/
-void e_accept(int fd, int events, void *arg){  
+void e_accept(int fd){  
 	SA4 sin;  
 	socklen_t len = sizeof(SA4);  
 	int nfd;  

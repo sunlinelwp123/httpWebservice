@@ -439,45 +439,56 @@ int main(int argc, char *argv[]){
 	g_epollFd = epoll_create(MAX_EVENTS);
 	if(g_epollFd <= 0) printf("create epoll failed.%d\n", g_epollFd);
 	/*t_net 封装socket创建*/
-	server_socket = s_listen(AF_INET, SOCK_STREAM, SERVER_PORT, BACKLOG);
-	printf("HttpServer running on port %d\n", port);//t_param.h  8080
-	struct epoll_event events[MAX_EVENTS];
-	int checkPos = 0;
-	/*ET 主进程事件循环 一般由epoll 非阻塞事件触发epoll_wait 则调用事件绑定的回调函数*/
-	/*epoll_wait 频繁触发其效率高 */
-	/*尽量减少epoll_ctl 以提高服务器负载能力 */
-	/*子进程会共用父进程的eopllFD（内核态？）对其操作会影响主进程 需要关闭子进程中的 epollFD */
-	while(1){
-		// a simple timeout check here, every time 100, better to use a mini-heap, and add timer event
-		/*这里进行简单的超时检查，每次100个 直到最大事件个数，最好使用mini-heap，并添加计时器事件*/
-		long now = time(NULL);
-		int i = 0;
-		for(i = 0; i < 100; i++, checkPos++){
-			if(checkPos == MAX_EVENTS) checkPos = 0; // recycle
-			if(g_Events[checkPos].status != 1) continue;
-			long duration = now - g_Events[checkPos].last_active;
-			if(duration >= 60){ // 60s timeout
-				close(g_Events[checkPos].fd);
-				printf("[fd=%d] timeout[%d--%d].\n", g_Events[checkPos].fd, g_Events[checkPos].last_active, now);
-				eventDel(g_epollFd, &g_Events[checkPos]);
-			}
+	pid_t pid;
+	if((pid = fork()) <  0){
+		printf("server start err:fork process failed.");
+		exit(-1);
+	}
+	if(pid == 0){
+		server_socket = s_listen(AF_INET, SOCK_STREAM, SERVER_PORT, BACKLOG);
+		printf("HttpServer running on port %d\n", port);//t_param.h  8080
+		while(1){
+			e_accept(server_socket);
 		}
-		// wait for events to happen
-		int fds = epoll_wait(g_epollFd, events, MAX_EVENTS, 1000);
-		if(fds < 0){
-			printf("epoll_wait error, exit\n");
-			break;
-		}
-		for(i = 0; i < fds; i++){
-			ioEvent_s *ev = (ioEvent_s*)events[i].data.ptr;
-			if((events[i].events&EPOLLIN)&&(ev->events&EPOLLIN)){ // read event
-				ev->call_back(ev->fd, events[i].events, ev->arg);
+	}else{
+		struct epoll_event events[MAX_EVENTS];
+		int checkPos = 0;
+		/*ET 边缘触发主进程事件循环 一般由epoll 非阻塞事件触发epoll_wait 则调用事件绑定的回调函数*/
+		/*epoll_wait 频繁触发其效率高 */
+		/*尽量减少epoll_ctl 以提高服务器负载能力 */
+		/*子进程会共用父进程的eopllFD（内核态？）对其操作会影响主进程 需要关闭子进程中的 epollFD */
+		while(1){
+			// a simple timeout check here, every time 100, better to use a mini-heap, and add timer event
+			/*这里进行简单的超时检查，每次100个 直到最大事件个数，最好使用mini-heap，并添加计时器事件*/
+			long now = time(NULL);
+			int i = 0;
+			for(i = 0; i < 100; i++, checkPos++){
+				if(checkPos == MAX_EVENTS) checkPos = 0; // recycle
+				if(g_Events[checkPos].status != 1) continue;
+				long duration = now - g_Events[checkPos].last_active;
+				if(duration >= 60){ // 60s timeout
+					close(g_Events[checkPos].fd);
+					printf("[fd=%d] timeout[%d--%d].\n", g_Events[checkPos].fd, g_Events[checkPos].last_active, now);
+					eventDel(g_epollFd, &g_Events[checkPos]);
+				}
 			}
-			if((events[i].events&EPOLLOUT)&&(ev->events&EPOLLOUT)){ // write event
-				ev->call_back(ev->fd, events[i].events, ev->arg);
+			// wait for events to happen
+			int fds = epoll_wait(g_epollFd, events, MAX_EVENTS, 1000);
+			if(fds < 0){
+				printf("epoll_wait error, exit\n");
+				break;
 			}
-		}
-	}	
+			for(i = 0; i < fds; i++){
+				ioEvent_s *ev = (ioEvent_s*)events[i].data.ptr;
+				if((events[i].events&EPOLLIN)&&(ev->events&EPOLLIN)){ // read event
+					ev->call_back(ev->fd, events[i].events, ev->arg);
+				}
+				if((events[i].events&EPOLLOUT)&&(ev->events&EPOLLOUT)){ // write event
+					ev->call_back(ev->fd, events[i].events, ev->arg);
+				}
+			}
+		}	
+	}
 	close(server_socket);
 	return 0;
 }

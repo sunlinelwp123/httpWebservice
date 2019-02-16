@@ -28,7 +28,8 @@ int main(){
                 inputstring = getenv("QUERY_STRING");
                 length = strlen(inputstring);
         }
-        printf("Content-Type:application/json;charset=UTF-8\r\n\r\n");
+
+     	printf("Content-Type:application/json;charset=UTF-8\r\n\r\n");
 #if IS_ORACLE
 	DBconn *db =new DBconn(ORACLE_URL);
 #else	

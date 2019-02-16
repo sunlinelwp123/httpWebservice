@@ -7,9 +7,9 @@ int main(int argc,char *argv[]){
 	int length;
 	char *method;
 	char *inputstring;
-	//printf("cgi-start\n");
+	printf("cgi-start\n");
 	method = getenv("REQUEST_METHOD");//将返回赋予method指针
-	//printf("method:%s\n", method);
+	printf("method:%s\n", method);
 	if(method == NULL) return 1;
 	if(!strcmp(method, "POST")){
 		length = atoi(getenv("CONTENT_LENGTH"));

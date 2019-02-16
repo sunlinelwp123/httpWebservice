@@ -144,6 +144,9 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 	/* 正确，HTTP 状态码 200 */
 	sprintf(buf, "HTTP/1.1 200 OK\r\n");
 	send(client, buf, strlen(buf), 0);
+//	 printf("Content-Type:application/json;charset=UTF-8\r\n\r\n");
+//	 目前只支持json格式返回 TODO
+
 	/* 建立管道 父 <-*/
 	if (pipe(cgi_output) < 0) {
 		/*错误处理*/
@@ -210,8 +213,8 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 			printf不可用，可以使用 stderr来实现打印操作 c++ 可以使用clog或者cerr一般使用clog*/
 		char meth_env[255];
 		char query_env[255];
-		char length_env[255];
-		char port_env[255];
+		char length_env[63];
+		char port_env[63];
 		/* 把 STDOUT 重定向到 cgi_output 的写入端 */
 		dup2(cgi_output[1], 1);/*参数output[1]是管道的输出写入端 参数1是stdout*/
 		/* 把 STDIN 重定向到 cgi_input 的读取端 */
@@ -231,9 +234,8 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 			sprintf(length_env, "CONTENT_LENGTH=%d", content_length);
 			putenv(length_env);
 		}
-		sprintf(port_env,"SERVER_PORT",SERVER_PORT);
+		sprintf(port_env,"SERVER_PORT=%d",SERVER_PORT);
 		putenv(port_env);
-		//printf("cgi-end\n");
 		/*用 execl 运行 cgi 通用网管接口 程序*/
 		execl(path, path, NULL);
 		exit(0);
@@ -251,9 +253,12 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 			}
 		}   
 		close(cgi_input[1]);
+	//	 目前只支持json格式返回 TODO
+		//sprintf(buf, "Content-Type:application/json;charset=UTF-8\r\n\r\n");
+		//send(client, buf, strlen(buf), 0);
 		/*读取 cgi_output 的管道输出到客户端，该管道输入是 STDOUT */
 		while (read(cgi_output[0], &c, 1) > 0){
-			printf("%c",c);/*TODO 子进程输出数据打印log文件输出*/ 
+			//printf("%c",c);/*TODO 子进程输出数据打印log文件输出*/ 
 			send(client, &c, 1, 0);
 		}
 		printf("\n");

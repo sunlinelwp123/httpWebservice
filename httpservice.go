@@ -15,9 +15,9 @@ import (
 func httpHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()  //解析参数，默认是不会解析的
 	fmt.Println(r.Form)  //这些信息是输出到服务器端的打印信息
-	/*fmt.Println("path", r.URL.Path)
+	fmt.Println("path", r.URL.Path)
 	fmt.Println("scheme", r.URL.Scheme)
-	fmt.Println("header", r.Header)
+	/*fmt.Println("header", r.Header)
 	fmt.Println("r",r);*/
 	body, _ := ioutil.ReadAll(r.Body)
         body_str := string(body)
@@ -41,9 +41,9 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		resp := out.String()
-		str_slic := resp[strings.LastIndex(resp, "\r\n\r\n")+ 1:]
-		fmt.Fprintf(w, str_slic)
+		res := out.String()
+		res_slic := res[strings.LastIndex(resp, "\r\n\r\n")+ 1:]
+		fmt.Fprintf(w, res_slic)
 	}
 }
 

@@ -112,7 +112,7 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 	int cgi_input[2];
 	pid_t pid;
 	int status;
-	int i,j;
+	/*int i,j;*/
 	char c;
 	int numchars = 1;
 	int content_length = -1;
@@ -159,7 +159,7 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 		cannot_execute(client);
 		return;
 	}
-#if 1
+#if 0
 	do{
 		/*如果有多进程操作 g_Events是否应该加锁？？TODO*/
 		for(j = 0; j < MAX_EVENTS; j++){
@@ -267,8 +267,10 @@ void execute_cgi(int client, const char *path, const char *method, const char *q
 		/*close(cgi_input[1]);*/
 		/*等待子进程*/
 		waitpid(pid, &status, 0);
+#if 0
 		eventDel(g_epollFd, &g_Events[i]);
 		eventDel(g_epollFd, &g_Events[j]);
+#endif		
 	}
 }
 

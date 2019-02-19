@@ -3,6 +3,8 @@
 ajax请求数据格式 application/json 暂时不支持表单提交和其他提交方式
 动态请求通过cgi通用网关接口（common gateway interface）调用对应程序
 
+引用开源库cJSON libzdb
+
 服务器代码
 include/t_net.h
 webcore.c
@@ -15,10 +17,11 @@ go语言实现 http服务器代码httpservice.go
 TODO 
 服务路由
 session
-dict定义
 日志分级
 配置文件
-
-
+文件处理
+公共锁
+缓存(redis?)
+...
 
 @AUTH LWP

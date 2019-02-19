@@ -34,7 +34,7 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(strconv.Itoa(len(body_str)))
 		os.Setenv("CONTENT_LENGTH", strconv.Itoa(len(body_str)))
 		cmd := exec.Command("./webapp" + r.URL.Path)
-		cmd.Stdin = strings.NewReader(body_str)//重定向
+		cmd.Stdin = strings.NewReader(body_str)//管道重定向
 		var out bytes.Buffer
 		cmd.Stdout = &out
 		err := cmd.Run()
@@ -42,7 +42,8 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 		res := out.String()
-		res_slic := res[strings.LastIndex(resp, "\r\n\r\n")+ 1:]
+		w.Header().Set("Content-Type", "application/json")
+		res_slic := res[strings.LastIndex(res, "\r\n\r\n")+ 1:]
 		fmt.Fprintf(w, res_slic)
 	}
 }

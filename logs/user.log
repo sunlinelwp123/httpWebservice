@@ -48574,3 +48574,449 @@ response:{
 	"recordsTotal":	209,
 	"recordsFiltered":	209
 }
+Wed Feb 20 16:23:07 2019
+fUser start !
+request:{
+	"draw":	1,
+	"columns":	[{
+			"data":	"username",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"userid",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"status",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usercasue",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"useremail",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"userwcat",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usersina",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usertelno",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usertype",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	null,
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}],
+	"order":	[{
+			"column":	0,
+			"dir":	"asc"
+		}],
+	"start":	0,
+	"length":	10,
+	"search":	{
+		"value":	"",
+		"regex":	false
+	}
+}
+ and status <> '0' order by user_id asc 
+page:1total:209totalPage:21count:10
+response:{
+	"data":	[{
+			"username":	"Alice",
+			"userid":	"0001",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"308498841@qq.com",
+			"userwcat":	"sd_ggg",
+			"usersina":	"sina@sina.com",
+			"usertelno":	"15065741390",
+			"usertype":	"a",
+			"usercasue":	"nor"
+		}, {
+			"username":	"allon",
+			"userid":	"0002",
+			"orgid":	"0001",
+			"status":	"2",
+			"useremail":	"308498849@qq.com",
+			"userwcat":	"sd_bbbb",
+			"usersina":	"sd_bbb",
+			"usertelno":	"15965741391",
+			"usertype":	"a",
+			"usercasue":	"sin"
+		}, {
+			"username":	"wangjl",
+			"userid":	"0003",
+			"orgid":	"0001",
+			"status":	"3",
+			"useremail":	"121323123@qq.com",
+			"userwcat":	"112312",
+			"usersina":	"43241",
+			"usertelno":	"12312313231",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"jianggl",
+			"userid":	"0004",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"123123@qq.com",
+			"userwcat":	"wdawda",
+			"usersina":	"adwawd",
+			"usertelno":	"15023123133",
+			"usertype":	"t",
+			"usercasue":	"wei"
+		}, {
+			"username":	"atcp",
+			"userid":	"60020",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"308488841@qq.com",
+			"userwcat":	"",
+			"usersina":	"",
+			"usertelno":	"15065741390",
+			"usertype":	"a",
+			"usercasue":	"mai"
+		}, {
+			"username":	"9999",
+			"userid":	"60022",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@0",
+			"userwcat":	"wcat_12345@0",
+			"usersina":	"wcat_12345@0",
+			"usertelno":	"11111111110",
+			"usertype":	"s",
+			"usercasue":	"pho"
+		}, {
+			"username":	"student1",
+			"userid":	"60023",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@1",
+			"userwcat":	"wcat_12345@1",
+			"usersina":	"wcat_12345@1",
+			"usertelno":	"11111111111",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student2",
+			"userid":	"60024",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@2",
+			"userwcat":	"wcat_12345@2",
+			"usersina":	"wcat_12345@2",
+			"usertelno":	"11111111112",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student3",
+			"userid":	"60025",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@3",
+			"userwcat":	"wcat_12345@3",
+			"usersina":	"wcat_12345@3",
+			"usertelno":	"11111111113",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student4",
+			"userid":	"60026",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@4",
+			"userwcat":	"wcat_12345@4",
+			"usersina":	"wcat_12345@4",
+			"usertelno":	"11111111114",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}],
+	"recordsTotal":	209,
+	"recordsFiltered":	209
+}
+Wed Feb 20 16:23:14 2019
+fUser start !
+request:{
+	"draw":	1,
+	"columns":	[{
+			"data":	"username",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"userid",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"status",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usercasue",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"useremail",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"userwcat",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usersina",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usertelno",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	"usertype",
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}, {
+			"data":	null,
+			"name":	"",
+			"searchable":	false,
+			"orderable":	false,
+			"search":	{
+				"value":	"",
+				"regex":	false
+			}
+		}],
+	"order":	[{
+			"column":	0,
+			"dir":	"asc"
+		}],
+	"start":	0,
+	"length":	10,
+	"search":	{
+		"value":	"",
+		"regex":	false
+	}
+}
+ and status <> '0' order by user_id asc 
+page:1total:209totalPage:21count:10
+response:{
+	"data":	[{
+			"username":	"Alice",
+			"userid":	"0001",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"308498841@qq.com",
+			"userwcat":	"sd_ggg",
+			"usersina":	"sina@sina.com",
+			"usertelno":	"15065741390",
+			"usertype":	"a",
+			"usercasue":	"nor"
+		}, {
+			"username":	"allon",
+			"userid":	"0002",
+			"orgid":	"0001",
+			"status":	"2",
+			"useremail":	"308498849@qq.com",
+			"userwcat":	"sd_bbbb",
+			"usersina":	"sd_bbb",
+			"usertelno":	"15965741391",
+			"usertype":	"a",
+			"usercasue":	"sin"
+		}, {
+			"username":	"wangjl",
+			"userid":	"0003",
+			"orgid":	"0001",
+			"status":	"3",
+			"useremail":	"121323123@qq.com",
+			"userwcat":	"112312",
+			"usersina":	"43241",
+			"usertelno":	"12312313231",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"jianggl",
+			"userid":	"0004",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"123123@qq.com",
+			"userwcat":	"wdawda",
+			"usersina":	"adwawd",
+			"usertelno":	"15023123133",
+			"usertype":	"t",
+			"usercasue":	"wei"
+		}, {
+			"username":	"atcp",
+			"userid":	"60020",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"308488841@qq.com",
+			"userwcat":	"",
+			"usersina":	"",
+			"usertelno":	"15065741390",
+			"usertype":	"a",
+			"usercasue":	"mai"
+		}, {
+			"username":	"9999",
+			"userid":	"60022",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@0",
+			"userwcat":	"wcat_12345@0",
+			"usersina":	"wcat_12345@0",
+			"usertelno":	"11111111110",
+			"usertype":	"s",
+			"usercasue":	"pho"
+		}, {
+			"username":	"student1",
+			"userid":	"60023",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@1",
+			"userwcat":	"wcat_12345@1",
+			"usersina":	"wcat_12345@1",
+			"usertelno":	"11111111111",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student2",
+			"userid":	"60024",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@2",
+			"userwcat":	"wcat_12345@2",
+			"usersina":	"wcat_12345@2",
+			"usertelno":	"11111111112",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student3",
+			"userid":	"60025",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@3",
+			"userwcat":	"wcat_12345@3",
+			"usersina":	"wcat_12345@3",
+			"usertelno":	"11111111113",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}, {
+			"username":	"student4",
+			"userid":	"60026",
+			"orgid":	"0001",
+			"status":	"1",
+			"useremail":	"1234567890@4",
+			"userwcat":	"wcat_12345@4",
+			"usersina":	"wcat_12345@4",
+			"usertelno":	"11111111114",
+			"usertype":	"s",
+			"usercasue":	"nor"
+		}],
+	"recordsTotal":	209,
+	"recordsFiltered":	209
+}
